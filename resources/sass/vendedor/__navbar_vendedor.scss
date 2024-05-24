@@ -1,0 +1,26 @@
+.navbar-vendedor {
+    --bs-link-color:#f70a0a;
+    --bs-link-hover-color:#f70a0a;
+
+    background-color: $color-vendedor-primario;
+    a {
+        color: $color-blanco;
+    }
+    .dropdown-item {
+        color: $color-vendedor-primario;
+        a {
+            text-decoration: none;
+        }
+    }
+    li {
+        list-style: none;
+        margin: auto;
+    }
+    .btn-link{
+        text-decoration: none;
+    }
+
+}
+.breadcrumb{
+    justify-content: center;
+}

@@ -1,0 +1,45 @@
+.container-vendedor{
+    .card-body.p-4.p-sm-5, .card{
+        border-width: 1px;
+        border-style: solid;
+        border-color: $color-vendedor-primario;
+        border-radius: 1rem;
+    }
+    input, hr{
+        border-color: $color-vendedor-primario;
+    }
+    label{
+        color: $color-vendedor-secundario;
+        font-size: smaller;
+    }
+    h5{
+        color: $color-vendedor-primario;
+    }
+
+    .col-lg-5{
+        width: 60%;
+
+    }
+    .btn.btn-login{
+        background-color: $color-vendedor-primario;
+        color: $color-blanco;
+    }
+
+    .btn-google{
+        border-color: $color-vendedor-primario;
+        color: $color-vendedor-secundario;
+    }
+
+    span{
+        color: $color-vendedor-secundario;
+        a{
+            color: $color-vendedor-primario;
+            text-decoration: none;
+        }
+    }
+    .form-group{
+        margin: 1rem 0 1rem 0 ;
+    }
+
+    
+}

@@ -1,0 +1,12 @@
+.profile-vendedor{
+    p.mb-0{
+        color: $color-vendedor-primario;
+    }
+    .card-header{
+        background-color: $color-para-fondos;
+        border-radius: 1rem 1rem 0 0;
+    }
+    input[type=file] {
+        font-size: 0.5rem;
+    }
+}

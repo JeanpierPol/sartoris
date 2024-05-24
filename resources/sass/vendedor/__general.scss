@@ -1,0 +1,9 @@
+.btn-vendedor {
+    background-color: $color-vendedor-primario;
+    color: $color-blanco;
+    
+    &:hover {
+        background-color: $color-vendedor-secundario; 
+        color: $color-blanco; 
+    }
+}

@@ -1,0 +1,12 @@
+.navbar-comprador{
+    background-color: $color-comprador-primario;
+    .nav-link {
+        color: $color-blanco;
+    }
+    .bi-search{
+        color: $color-comprador-primario;
+    }
+    input[type="search"]{
+        border-radius: 50px;
+    }
+}

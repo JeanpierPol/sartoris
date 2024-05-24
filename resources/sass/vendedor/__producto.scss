@@ -1,0 +1,22 @@
+.container-vendedor{
+    .list-group-item {
+        background: none;
+    }
+    .card-body{
+        padding: 1rem;
+        .form-row{
+            margin: 2rem 0 2rem 0;
+        }
+        label{
+            font-size: unset;
+        }
+        p{
+            color: $color-vendedor-secundario;
+        }
+    }
+
+    img{
+        max-width: 50vh;
+        max-height: 50vh;
+    }
+}
