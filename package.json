@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "start": "npm run dev"
+        "start": "dev -L -p $PORT"
     },
     "devDependencies": {
         "axios": "^1.6.4",
@@ -15,6 +15,7 @@
     "dependencies": {
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.3",
-        "bootstrap-icons": "^1.11.3"
+        "bootstrap-icons": "^1.11.3",
+        "serve": "^14.2.3"
     }
 }
