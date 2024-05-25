@@ -67,6 +67,10 @@ jobs:
           deployment-id: ${{ matrix.deployment-id }}
           action: retrieve-info
 
+      - name: Create necessary directories
+        run: |
+          mkdir -p storage/logs storage/framework/sessions storage/framework/views storage/framework/cache
+
       - name: Render templates
         uses: ionos-deploy-now/template-renderer-action@v2
         id: template
