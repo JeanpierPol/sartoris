@@ -12,12 +12,9 @@ deploy:
       - output.log
     # commands that are executed at the real webspace NOT at build servers AFTER copying new files
     post-deployment-remote-commands:
-      - mkdir -p /tmp/storage/logs || echo "Could not create /tmp/storage/logs"
-      - mkdir -p /tmp/bootstrap/cache || echo "Could not create /tmp/bootstrap/cache"
-      - chmod -R 775 /tmp/storage || echo "Could not change permissions for /tmp/storage"
-      - chmod -R 775 /tmp/bootstrap/cache || echo "Could not change permissions for /tmp/bootstrap/cache"
-      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
-      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
+      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} ;
+      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} ;
+      - chmod -R o+w storage bootstrap/cache
       - php artisan migrate --force
       - php artisan optimize:clear
       - php artisan migrate --force -n
@@ -40,12 +37,9 @@ deploy:
       - php artisan down
     # commands that are executed at the real webspace NOT at build servers AFTER copying new files
     post-deployment-remote-commands:
-      - mkdir -p /tmp/storage/logs || echo "Could not create /tmp/storage/logs"
-      - mkdir -p /tmp/bootstrap/cache || echo "Could not create /tmp/bootstrap/cache"
-      - chmod -R 775 /tmp/storage || echo "Could not change permissions for /tmp/storage"
-      - chmod -R 775 /tmp/bootstrap/cache || echo "Could not change permissions for /tmp/bootstrap/cache"
-      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
-      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
+      - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} ;
+      - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} ;
+      - chmod -R o+w storage bootstrap/cache
       - php artisan migrate --force
       - php artisan optimize:clear
       - php artisan migrate --force -n
