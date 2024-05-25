@@ -12,10 +12,10 @@ deploy:
       - output.log
     # commands that are executed at the real webspace NOT at build servers AFTER copying new files
     post-deployment-remote-commands:
-      - mkdir -p $(pwd)/storage/logs || echo "Could not create storage/logs"
-      - mkdir -p $(pwd)/bootstrap/cache || echo "Could not create bootstrap/cache"
-      - chmod -R 775 $(pwd)/storage || echo "Could not change permissions for storage"
-      - chmod -R 775 $(pwd)/bootstrap/cache || echo "Could not change permissions for bootstrap/cache"
+      - mkdir -p /tmp/storage/logs || echo "Could not create /tmp/storage/logs"
+      - mkdir -p /tmp/bootstrap/cache || echo "Could not create /tmp/bootstrap/cache"
+      - chmod -R 775 /tmp/storage || echo "Could not change permissions for /tmp/storage"
+      - chmod -R 775 /tmp/bootstrap/cache || echo "Could not change permissions for /tmp/bootstrap/cache"
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - php artisan migrate --force
@@ -40,10 +40,10 @@ deploy:
       - php artisan down
     # commands that are executed at the real webspace NOT at build servers AFTER copying new files
     post-deployment-remote-commands:
-      - mkdir -p $(pwd)/storage/logs || echo "Could not create storage/logs"
-      - mkdir -p $(pwd)/bootstrap/cache || echo "Could not create bootstrap/cache"
-      - chmod -R 775 $(pwd)/storage || echo "Could not change permissions for storage"
-      - chmod -R 775 $(pwd)/bootstrap/cache || echo "Could not change permissions for bootstrap/cache"
+      - mkdir -p /tmp/storage/logs || echo "Could not create /tmp/storage/logs"
+      - mkdir -p /tmp/bootstrap/cache || echo "Could not create /tmp/bootstrap/cache"
+      - chmod -R 775 /tmp/storage || echo "Could not change permissions for /tmp/storage"
+      - chmod -R 775 /tmp/bootstrap/cache || echo "Could not change permissions for /tmp/bootstrap/cache"
       - find $(pwd) -type f -not -path "$(pwd)/logs/*" -exec chmod 664 {} \;
       - find $(pwd) -type d -not -name "logs" -exec chmod 775 {} \;
       - php artisan migrate --force
