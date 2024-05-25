@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('comprador')->name('comprador.')->group(function () {
-    Route::namespace('App\Http\Controllers\comprador')->group(function () {
+    Route::namespace('app\Http\Controllers\comprador')->group(function () {
         Route::middleware(['guest:comprador', 'revalidate'])->group(function () {
             Route::view('/login', 'comprador.auth.login')->name('login');
             Route::post('/login', 'compradorController@loginHandler')->name('login-handler');
