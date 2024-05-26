@@ -59,9 +59,10 @@ jobs:
           PAYPAL_SANDBOX_CLIENT_SECRET: ${{ secrets.PAYPAL_SANDBOX_CLIENT_SECRET }}
         run: |
           php artisan key:generate --force -n
-          php artisan config:cache
-          php artisan route:cache
+          php artisan config:clear
+          php artisan route:clear
           php artisan view:cache
+          php artisan cache:clear
 
       - name: Setup Node
         uses: actions/setup-node@v3
