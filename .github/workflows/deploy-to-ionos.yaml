@@ -17,11 +17,11 @@ on:
         required: true
         type: string
       deployment-ids:
-        require: true
+        required: true
         type: string
   push:
-    path:
-      - ./.github/workflows/deploy-to-ionos.yaml
+    paths:
+      - ./.github/workflows/deploy-now.yaml
 
 concurrency: ${{ github.ref }}
 
@@ -35,6 +35,9 @@ jobs:
       matrix:
         deployment-id: ${{ fromJson(inputs.deployment-ids) }}
     steps:
+      - name: Set up project
+        run: |
+          mkdir -p storage/logs storage/framework/sessions storage/framework/views storage/framework/cache
       - name: Update deployment status
         uses: ionos-deploy-now/project-action@v1
         with:
