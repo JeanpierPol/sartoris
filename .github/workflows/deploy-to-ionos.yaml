@@ -44,11 +44,7 @@ jobs:
           branch-id: ${{ inputs.branch-id }}
           deployment-id: ${{ matrix.deployment-id }}
           action: update-status
-          status: in_progress
-        
-      - name: Create folder
-        run: |
-          mkdir -p storage/log
+          status: in_progress  
 
       - name: Retrieve stored deployment
         uses: ionos-deploy-now/artifact-action@v1
