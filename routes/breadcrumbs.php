@@ -29,6 +29,12 @@ Breadcrumbs::for('buscar-productos', function (BreadcrumbTrail $trail) {
     $trail->parent('productos');
     $trail->push('Buscar Productos', route('buscar-productos'));
 });
+
+Breadcrumbs::for('comprador_login', function (BreadcrumbTrail $trail) {
+    $trail->parent('productos');
+    $trail->push('Login comprador', route('comprador.login'));
+});
+
 // // Home > Blog
 // Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
 //     $trail->parent('home');
