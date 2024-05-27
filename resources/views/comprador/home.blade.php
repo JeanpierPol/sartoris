@@ -8,7 +8,7 @@
                 <div class="card bg-c-blue order-card">
                     <div class="card-block">
                         <h6 class="m-b-20">Mi perfil</h6>
-                        <h2 class="text-right"><i class="bi bi-person"></i><span></span></h2>
+                        <h2 class="text-right"><i class="bi bi-person-fill"></i><span></span></h2>
                         <p class="m-b-0">Ver perfil, editar perfil</p>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="card bg-c-green order-card">
                     <div class="card-block">
                         <h6 class="m-b-20">Mis pedidos</h6>
-                        <h2 class="text-right"><i class="bi bi-cart-check"></i></h2>
+                        <h2 class="text-right"><i class="bi bi-cart-check-fill"></i></i></h2>
                         <p class="m-b-0">Ver mis pedidos</p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="card bg-c-yellow order-card">
                     <div class="card-block">
                         <h6 class="m-b-20">Métodos de pago</h6>
-                        <h2 class="text-right"><i class="bi bi-credit-card"></i></h2>
+                        <h2 class="text-right"><i class="bi bi-credit-card-fill"></i></i></h2>
                         <p class="m-b-0">Ver métodos de pago guardados</p>
                     </div>
                 </div>

@@ -1,0 +1,9 @@
+.home-vendedor{
+    .card .card-block {
+        padding: 25px;
+    }
+    .card {
+        color:  $color-vendedor-primario;
+        border-color: $color-vendedor-primario;
+    }
+}
