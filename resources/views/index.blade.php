@@ -18,7 +18,7 @@
                         <div class="d-flex justify-content-between p-3">
                         </div>
                         @if ($producto->imagen_portada)
-                            <img src="{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
+                            <img src="/{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @else
                             <img src="/img/productos/default-product.png" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @endif

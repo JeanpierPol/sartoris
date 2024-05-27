@@ -84,6 +84,7 @@
           @endif
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end">
+        <li><a class="dropdown-item" href="{{route('comprador.home')}}">Inicio</a></li>
           <li><a class="dropdown-item" href="{{route('comprador.profile')}}">Mis datos</a></li>
           <li>
             <hr class="dropdown-divider">

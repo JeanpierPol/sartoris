@@ -1,7 +1,8 @@
 @extends('layout.app-master')
 @section('title', 'Sartoris')
 @section('content')
-{{ Breadcrumbs::render('buscar-productos') }}
+{{ Breadcrumbs::render('productos') }}
+
 <section class="productos">
     <div class="container py-5">
         <div class="row">
@@ -17,7 +18,7 @@
                         <div class="d-flex justify-content-between p-3">
                         </div>
                         @if ($producto->imagen_portada)
-                            <img src="/{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
+                            <img src="{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @else
                             <img src="/img/productos/default-product.png" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @endif

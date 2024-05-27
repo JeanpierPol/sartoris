@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\comprador\CompradorLoginRequest;
 use App\Http\Requests\comprador\CompradorRegisterRequest;
 use App\Models\Comprador;
+use App\Models\DetalleTransaccion;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,6 +44,18 @@ class CompradorController extends Controller
             'password' => $request->password,
         ]);
         return redirect('/comprador/login')->with('sucess', 'Cuenta creada correctamente');
+    }
+
+    public function orders(){
+        $comprador = Auth::guard('comprador')->user();
+
+        $transacciones = DetalleTransaccion::with(['producto.vendedor'])
+                        ->where('comprador_id', $comprador->id)
+                        ->get();
+        
+
+        return view('comprador.orders', compact('transacciones'));
+
     }
 
 }

@@ -1,11 +1,12 @@
 @extends('layout.app-master')
 @section('title', 'Sartoris')
 @section('content')
-{{ Breadcrumbs::render('buscar-productos') }}
 <section class="productos">
     <div class="container py-5">
         <div class="row">
+            
             @foreach ($productos as $producto)
+            {{$producto->vendedo}}
             
             @php
                 $precio_final = $producto->precio_venta - ($producto->precio_venta * ($producto->descuento / 100));

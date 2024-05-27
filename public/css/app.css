@@ -12162,6 +12162,14 @@ textarea.form-control-lg {
   color: #283618;
 }
 
+.home-comprador .card .card-block {
+  padding: 25px;
+}
+.home-comprador .card {
+  color: #606C38;
+  border-color: #283618;
+}
+
 .productos img {
   width: 100%;
   height: 275px;

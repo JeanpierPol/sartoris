@@ -1,0 +1,9 @@
+.home-comprador{
+    .card .card-block {
+        padding: 25px;
+    }
+    .card {
+        color:  $color-comprador-secundario;
+        border-color: $color-comprador-primario;
+    }
+}

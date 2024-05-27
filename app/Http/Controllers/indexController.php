@@ -48,4 +48,13 @@ class indexController extends Controller
 
         return view('producto', compact('producto', 'productosSimilares'));
     }
+
+    public function searchVendedor(Request $request)
+    {
+        $productos = Producto::where('vendedor_id', $request->id)
+            ->with('vendedor')
+            ->get();
+
+        return view('vendedor-search', compact('productos'));
+    }
 }

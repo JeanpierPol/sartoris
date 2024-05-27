@@ -21,6 +21,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::post('/cart/clear', 'CartController@clearCart')->name('clear-cart');
     Route::get('/producto/{id}', 'indexController@producto')->name('producto');
     Route::get('/buscar-productos', 'indexController@search')->name('buscar-productos');
+    Route::get('/producto-vendedor/{id}', 'indexController@searchVendedor')->name('vendedor-productos');
 
     Route::view('/rol', 'rol')->name('rol');
 
