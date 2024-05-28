@@ -19,6 +19,7 @@ Route::prefix('vendedor')->name('vendedor.')->group(function () {
             Route::view('/profile', 'vendedor.profile')->name('profile');
             Route::get('/profile/update', 'VendedorProfileController@showProfileUpdate')->name('profile.update');
             Route::post('/profile/update', 'VendedorProfileController@updateProfileHandler')->name('profile.update-handler');
+            Route::get('/sales', 'VendedorController@showSales')->name('sales');
 
             Route::prefix('producto')->name('producto.')->group(function () {
                 Route::get('/all','ProductoController@allProductos')->name('all-productos');

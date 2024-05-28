@@ -21,6 +21,7 @@ Route::prefix('comprador')->name('comprador.')->group(function () {
             Route::post('/profile/update', 'CompradorProfileController@updateProfileHandler')->name('profile.update-handler');
 
             Route::view('/paymet', 'comprador.payment')->name('payment');
+            Route::get('/orders', 'CompradorController@orders')->name('orders');
         });
     });
 });

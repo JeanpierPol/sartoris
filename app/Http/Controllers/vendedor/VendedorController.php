@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendedor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\vendedor\VendedorLoginRequest;
 use App\Http\Requests\vendedor\VendedorRegisterRequest;
+use App\Models\DetalleTransaccion;
 use App\Models\Vendedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,16 @@ class VendedorController extends Controller
             'password' => $request->password,
         ]);
         return redirect('/vendedor/login')->with('sucess', 'Cuenta creada correctamente');
+    }
+
+    public function showSales(){
+        $vendedor = auth()->id();
+        
+        $transacciones = DetalleTransaccion::with('producto')
+        ->where('comprador_id', $vendedor)
+        ->get();
+
+        return view('vendedor.sales', compact('transacciones'));
     }
 }
 

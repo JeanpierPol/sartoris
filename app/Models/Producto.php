@@ -40,6 +40,10 @@ class Producto extends Model
         return array_merge([$this->imagen_portada], $imagenes);
     }
 
+    /**
+     * Relaciones
+     */
+
     public function vendedor()
     {
         return $this->belongsTo(Vendedor::class, 'vendedor_id');
@@ -55,5 +59,9 @@ class Producto extends Model
         return $this->hasMany(DetalleTransaccion::class);
     }
     
+    public function getRouteKeyName()
+    {
+        return 'nombre';
+    }
     
 }

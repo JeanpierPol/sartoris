@@ -3,8 +3,6 @@
 @section('content')
 {{ Breadcrumbs::render('producto', $producto) }}
 <section class="py-5">
-    
-
     <div class="container">
         <div class="row gx-5">
             <aside class="col-lg-6">
@@ -38,19 +36,14 @@
                     <h4 class="title text-dark">
                         {{$producto['nombre']}}
                     </h4>
+                    <span>Vendedor: <a href="{{route('vendedor-productos', $producto->vendedor->id)}}">{{$producto->vendedor->nickname}}</a></span>
+
                     <div class="d-flex flex-row my-3">
-                        <div class="text-warning mb-1 me-2">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
                         <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>Existencias : {{$producto['existencias']}}</span>
                         @if ($producto['existencias']>0)
-                        <span class="text-success ms-2">Disponible</span>
+                            <span class="text-success ms-2">Disponible</span>
                         @else
-                        <span class="text-danger ms-2">No hay</span>
+                            <span class="text-danger ms-2">No hay</span>
                         @endif
                     </div>
                     @php
@@ -117,13 +110,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Productos similares</h5>
-                            @foreach ( $productosSimilares as $producto ) 
+                            @foreach ( $productosSimilares as $producto )
                             <div class="d-flex mb-3">
                                 <a href="{{route('producto', $producto->id)}}" class="me-3">
                                     @if ($producto->imagen_portada)
-                                        <img src="/{{$producto->imagen_portada}}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    <img src="/{{$producto->imagen_portada}}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @else
-                                        <img src="/img/productos/default-product.png" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    <img src="/img/productos/default-product.png" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @endif
                                 </a>
                                 <div class="info">

@@ -2,7 +2,7 @@
 @section('title', 'Métodos de pago')
 @section('content')
 
-<div class="container-fluid bg-secondary vh-100 d-flex justify-content-center align-items-center">
+<div class="ms-4 mt-4">
     <div class="card border-0  p-4 text-white">
         <div class="top_div text-white d-flex justify-content-between align-items-center">
             <i class="bi bi-brightness-high fs-3"></i>
@@ -14,22 +14,23 @@
         </div>
         <div class="number mt-3 lh-1 ">
 
-            <span>Credit card number</span>
+            <span>Número de tarjeta bancaria</span>
 
             <div class="d-flex gap-2 mt-2">
-                <p>2033</p>
-                <p>2035</p>
-                <p>6559</p>
-                <p>5563</p>
+                <p>1234</p>
+                <p>5678</p>
+                <p>9101</p>
+                <p>1121</p>
             </div>
         </div>
         <div class="name_exp d-flex justify-content-between mt-4">
             <div class="name">
-                <span>Name</span>
-                <p>Alexender K smith</p>
+                <span>Nombre</span>
+                <p>{{Auth::guard('comprador')->user()->nombre}} {{Auth::guard('comprador')->user()->apellido}}</p>
             </div>
+            
             <div class="expiry">
-                <span>Exp. Date</span>
+                <span>Fecha de vencimiento</span>
                 <p>05/25</p>
             </div>
             <img src="https://imgur.com/uNN72Zm.png">
