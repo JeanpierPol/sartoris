@@ -3,7 +3,7 @@
 @section('content')
 {{ Breadcrumbs::render('producto', $producto) }}
 <section class="py-5">
-    <div class="container">
+    <div class="container container-comprador">
         <div class="row gx-5">
             <aside class="col-lg-6">
                 <div id="carouselExample" class="carousel slide">
@@ -36,10 +36,11 @@
                     <h4 class="title text-dark">
                         {{$producto['nombre']}}
                     </h4>
+                    <hr>
                     <span>Vendedor: <a href="{{route('vendedor-productos', $producto->vendedor->id)}}">{{$producto->vendedor->nickname}}</a></span>
 
                     <div class="d-flex flex-row my-3">
-                        <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>Existencias : {{$producto['existencias']}}</span>
+                        <span class="text-muted">Existencias : {{$producto['existencias']}}</span>
                         @if ($producto['existencias']>0)
                             <span class="text-success ms-2">Disponible</span>
                         @else
@@ -84,16 +85,16 @@
                             <label class="mb-2 d-block">Cantidad</label>
                             <div class="input-group mb-3" style="width: 170px;">
                                 <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                                    <i class="fas fa-minus"></i>
+                                <i class="bi bi-dash"></i>
                                 </button>
                                 <input type="text" class="form-control text-center border border-secondary" min="1" max="{{$producto['existencias']}}" aria-label="Example text with button addon" aria-describedby="button-addon1" />
                                 <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                                    <i class="fas fa-plus"></i>
+                                    <i class="bi bi-plus-lg"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <a type="button" class="btn btn-primary" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
+                    <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
                 </div>
             </main>
         </div>

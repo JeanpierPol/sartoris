@@ -3,7 +3,7 @@
 @section('content')
 <section class="h-100 h-custom cart">
 {{ Breadcrumbs::render('cart') }}
-    <div class="container py-5 h-100">
+    <div class="container py-5 h-100 container-comprador">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card">
