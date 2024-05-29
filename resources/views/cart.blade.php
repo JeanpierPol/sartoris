@@ -39,7 +39,7 @@
                                             <div class="d-flex flex-row align-items-center">
                                                 <div>
                                                     @if ($producto['imagen_portada'])
-                                                       <a href="{{route('producto', $id)}}"><img src="/{{$producto['imagen_portada']}}" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a> 
+                                                       <a href="{{route('producto', $id)}}"><img src="{{$producto['imagen_portada']}}" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a> 
                                                     @else
                                                         <a href="{{route('producto', $id)}}"><img src="/img/productos/default-product.png" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a>
                                                     @endif

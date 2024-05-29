@@ -43,9 +43,11 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="col">
-                                <p class="my-3">Precio</p>
-                                <input type="number" class="form-control" id="precioProducto" name="precio_venta" value="{{ old('precio_venta', $producto->precio_venta ?? '') }}">
-                                <x-error-message field="precio_venta" />
+                                <div class="form-group">
+                                    <label for="precioProducto" class="my-3">Precio</label>
+                                    <input type="number" class="form-control" id="precioProducto" name="precio_venta" step="any" value="{{ old('precio_venta', $producto->precio_venta ?? '') }}">
+                                    <x-error-message field="precio_venta" />
+                                </div>
                             </div>
                             <div class="col">
                                 <p class="my-3">Existencias</p>
@@ -78,7 +80,9 @@
                 </div>
             </div>
             <input type="submit" class="btn btn-login fw-bold" value="{{ $buttonText }}">
+            <a href="javascript:history.back()" class="btn btn-login fw-bold">Cancelar</a>
         </form>
+
     </div>
 </section>
 

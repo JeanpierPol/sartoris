@@ -1,11 +1,15 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Mail\NotificacionPagoMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\DetalleTransaccion;
 use App\Models\Producto;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class TransaccionController extends Controller
 {
@@ -17,6 +21,9 @@ class TransaccionController extends Controller
         if (Auth::guard('comprador')->check()) {
             $comprador = Auth::guard('comprador')->user();
         }
+
+        Log::info('Iniciando transacción para comprador: ' . $comprador->email);
+
         DB::beginTransaction();
 
         try {
@@ -24,30 +31,36 @@ class TransaccionController extends Controller
 
             foreach ($productos as $id => $productoData) {
                 $producto = Producto::find($id);
-                
+
                 if ($producto) {
-                    $cantidad = $productoData['cantidad'];
-                    $precioUnitario = $producto->precio_venta;
-                    $subtotal = $cantidad * $precioUnitario;
-                    
-                    $detalleTransaccion = new DetalleTransaccion([
-                        'comprador_id' => $comprador->id,
-                        'producto_id' => $producto->id,
-                        'cantidad' => $cantidad,
-                        'precio_unitario' => $precioUnitario,
-                        'subtotal' => $subtotal,
-                        'fecha' => now(),
-                    ]);
-                    $detalleTransaccion->save();
+                    if ($producto->existencias > 0) {
+                        $cantidad = $productoData['cantidad'];
+                        $precioUnitario = $producto->precio_venta;
+                        $subtotal = $cantidad * $precioUnitario;
 
-                    $producto->existencias -= $cantidad;
-                    $producto->save();
+                        $detalleTransaccion = new DetalleTransaccion([
+                            'comprador_id' => $comprador->id,
+                            'producto_id' => $producto->id,
+                            'cantidad' => $cantidad,
+                            'precio_unitario' => $precioUnitario,
+                            'subtotal' => $subtotal,
+                            'fecha' => now(),
+                        ]);
+                        $detalleTransaccion->save();
 
-                    $total += $subtotal;
+                        $producto->existencias -= $cantidad;
+                        $producto->save();
+
+                        $total += $subtotal;
+                    } else {
+                        return redirect()->route('cart')->with('error', 'Error al procesar la transacción.');
+                    }
                 }
             }
 
             DB::commit();
+
+            Mail::to($comprador->email)->send(new NotificacionPagoMail($productos));
 
             session()->forget('cart');
 

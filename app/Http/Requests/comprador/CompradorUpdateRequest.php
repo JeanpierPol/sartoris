@@ -28,7 +28,7 @@ class CompradorUpdateRequest extends FormRequest
             'apellido' => 'min:3',
             'pais'=>'min:3',
             'direccion'=>'min:3',
-            'telefono'=>'min:3|numeric',
+            'telefono'=>['regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => ['email', Rule::unique('compradores')->ignore($this->user()->id)],
             'fecha_nac ' => 'before:today|after:01-01-1900',
             'imagen' => 'mimes:png,jpg,jpeg',
@@ -46,9 +46,6 @@ class CompradorUpdateRequest extends FormRequest
             'pais.min' => 'El país debe tener al menos 3 caracteres',
 
             'direccion.min' => 'La dirección debe tener al menos 3 caracteres',
-
-            'telefono.min' => 'El teléfono debe tener al menos 3 caracteres',
-            'telefono.numeric' => 'El teléfono debe ser un número',
 
             'email.email' => 'El email debe ser una dirección de correo válida',
             'email.unique' => 'El email ya está en uso',

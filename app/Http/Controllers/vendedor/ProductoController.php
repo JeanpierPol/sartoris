@@ -26,7 +26,7 @@ class ProductoController extends Controller
         $producto_imagenes = [];
 
         if ($request->hasFile('imagen')) {
-            $path = "img/productos/$id_vendedor/" . date("YmdHis");
+            $path = "/img/productos/$id_vendedor/" . date("YmdHis");
             foreach ($request->file('imagen') as $image) {
                 $imageName = time() . uniqid() . $image->getClientOriginalName();
                 $image->move(public_path($path), $imageName);
@@ -87,7 +87,7 @@ class ProductoController extends Controller
                     unlink(public_path($oldImage));
                 }
             }
-            $path = "img/productos/{$producto->vendedor_id}/" . date("YmdHis");
+            $path = "/img/productos/{$producto->vendedor_id}/" . date("YmdHis");
             $producto_imagenes = [];
             foreach ($request->file('imagen') as $image) {
                 $imageName = time() . uniqid() . $image->getClientOriginalName();

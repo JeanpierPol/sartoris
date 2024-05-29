@@ -32,9 +32,9 @@ class VendedorProductoCreateRequest extends FormRequest
             'descripcion' => '',
             'imagen_portada.*' => 'mimes:png,jpg,jpeg',
             'imagenes' => 'array',
-            'precio_venta' => 'required|numeric|between:0,9999.99',
-            'descuento' => 'required|integer',
-            'existencias' => 'required|integer',
+            'precio_venta' => 'required|numeric|gt:0',
+            'descuento' => 'required|numeric|gt:0',
+            'existencias' => 'required|integer|min:0',
         ];
     }
     

@@ -27,10 +27,10 @@ class VendedorUpdateRequest extends FormRequest
             'apellido' => 'min:3',
             'pais'=>'min:3',
             'direccion'=>'min:3',
-            'telefono'=>'min:3|numeric',
+            'telefono'=>['regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => ['email', Rule::unique('vendedores')->ignore($this->user()->id)],
             'fecha_nac ' => 'before:today|after:01-01-1900',
-            'imagen' => 'mimes:png,jpg,jpeg',
+            'imagen' => 'mimes:jpeg,jpg,png|max:2048',
 
         ];
     }
@@ -46,9 +46,6 @@ class VendedorUpdateRequest extends FormRequest
 
             'direccion.min' => 'La dirección debe tener al menos 3 caracteres',
 
-            'telefono.min' => 'El teléfono debe tener al menos 3 caracteres',
-            'telefono.numeric' => 'El teléfono debe ser un número',
-
             'email.email' => 'El email debe ser una dirección de correo válida',
             'email.unique' => 'El email ya está en uso',
 
@@ -57,6 +54,7 @@ class VendedorUpdateRequest extends FormRequest
             'fecha_nac.after' => 'La fecha de nacimiento debe ser posterior a 01-01-1900',
 
             'imagen.mimes' => 'La imagen debe ser un archivo de tipo: png, jpg, jpeg',
+            'imagen.max' => 'La imagen no debe ser mayor de 2MB',
         ];
     }
 }

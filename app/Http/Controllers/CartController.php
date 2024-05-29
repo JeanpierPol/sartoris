@@ -12,17 +12,23 @@ class CartController extends Controller
         $producto = Producto::findOrFail($id);
         $cart = $request->session()->get('cart', []);
 
-        if (isset($cart[$producto->id])) {
-            $cart[$producto->id]['cantidad']++;
-        } else {
-            $cart[$producto->id] = [
-                "nombre" => $producto->nombre,
-                "cantidad" => ($request->cantidad) ? $request->cantidad : 1,
-                "precio_venta" => $producto->precio_venta,
-                "descuento" => $producto->descuento,
-                "imagen_portada" => $producto->imagen_portada
-            ];
+        if ($producto->existencias > 0) {
+            if (isset($cart[$producto->id])) {
+                $cart[$producto->id]['cantidad']++;
+            } else {
+                $cart[$producto->id] = [
+                    "nombre" => $producto->nombre,
+                    "cantidad" => ($request->cantidad) ? $request->cantidad : 1,
+                    "precio_venta" => $producto->precio_venta,
+                    "descuento" => $producto->descuento,
+                    "imagen_portada" => $producto->imagen_portada
+                ];
+            }
+        }else{
+            return redirect()->back()->with('error', 'producto no válido');
         }
+
+
 
         $request->session()->put('cart', $cart);
         return redirect()->back()->with('success', 'El producto ha sido agregado');

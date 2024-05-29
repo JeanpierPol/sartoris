@@ -23,16 +23,16 @@
                                 <x-error-message field="nickname" />
                             </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="pais{{ ucfirst($userType) }}">País</label>
-                                    <input type="text" class="form-control" id="pais{{ ucfirst($userType) }}" name="pais" value="{{old('pais')}}">
-                                    <x-error-message field="pais" />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="direccion{{ ucfirst($userType) }}">Dirección</label>
-                                    <input type="text" class="form-control" id="direccion{{ ucfirst($userType) }}" name="direccion" value="{{old('direccion')}}">
-                                    <x-error-message field="direccion" />
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label for="pais{{ ucfirst($userType) }}">País</label>
+                                <input type="text" class="form-control" id="pais{{ ucfirst($userType) }}" name="pais" value="{{old('pais')}}">
+                                <x-error-message field="pais" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="direccion{{ ucfirst($userType) }}">Dirección</label>
+                                <input type="text" class="form-control" id="direccion{{ ucfirst($userType) }}" name="direccion" value="{{old('direccion')}}">
+                                <x-error-message field="direccion" />
+                            </div>
 
                             <div class="form-group">
                                 <label for="ntelf">Número de teléfono</label>
@@ -46,7 +46,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="fecha_nac">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="{{old('fecha_nac')}}">
+                                @php
+                                    $maxDate = date('Y-m-d');
+                                    $minDate = date('Y-m-d', strtotime('1900-01-01'));
+                                @endphp
+
+                                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" max="{{ $maxDate }}" min="{{ $minDate }}" value="{{ old('fecha_nac') }}">
+
                                 <x-error-message field="fecha_nac" />
                             </div>
                             <div class="form-group">
@@ -68,7 +74,7 @@
                                 <label class="form-check-label" for="form2Example3">
                                     <span> Acepto los <a href="#!" class=""><u>terminos y condiciones</u></a> de la pagina web</span>
                             </div>
-                            
+
                             <div class="d-grid">
                                 <button class="btn btn-login fw-bold" type="submit">Registrarse</button>
                             </div>
