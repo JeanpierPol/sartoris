@@ -11966,27 +11966,25 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.imagen_asignar_rol {
+.contenedor-rol .imagen_asignar_rol {
   height: 100vh;
   width: 50%;
   background-repeat: no-repeat;
 }
-
-.contenedor-rol {
+.contenedor-rol .contenedor-rol {
   background-color: #606C38;
 }
-.contenedor-rol p {
+.contenedor-rol .contenedor-rol p {
   text-align: center;
   margin: auto;
   padding: 5%;
 }
-
-.btn-comprador, .btn-vendedor {
+.contenedor-rol .btn-comprador, .contenedor-rol .btn-vendedor {
   padding: 5%;
   background-color: #DDA15E;
   color: #fff;
 }
-.btn-comprador:hover, .btn-comprador:focus, .btn-vendedor:hover, .btn-vendedor:focus {
+.contenedor-rol .btn-comprador:hover, .contenedor-rol .btn-comprador:focus, .contenedor-rol .btn-vendedor:hover, .contenedor-rol .btn-vendedor:focus {
   background-color: #DDA15E;
 }
 
@@ -12094,6 +12092,14 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.home-vendedor .card .card-block {
+  padding: 25px;
+}
+.home-vendedor .card {
+  color: #BC6C25;
+  border-color: #BC6C25;
+}
+
 .navbar-comprador {
   background-color: #283618;
 }
@@ -12105,41 +12111,6 @@ textarea.form-control-lg {
 }
 .navbar-comprador input[type=search] {
   border-radius: 50px;
-}
-
-.container-comprador .card-body.p-4.p-sm-5, .container-comprador .card {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #283618;
-  border-radius: 1rem;
-}
-.container-comprador input, .container-comprador hr {
-  border-color: #283618;
-}
-.container-comprador label {
-  color: #606C38;
-  font-size: smaller;
-}
-.container-comprador h5, .container-comprador .h5 {
-  color: #283618;
-}
-.container-comprador .col-lg-5 {
-  width: 60%;
-}
-.container-comprador .btn.btn-login {
-  background-color: #283618;
-  color: #fff;
-}
-.container-comprador .btn-google {
-  border-color: #283618;
-  color: #606C38;
-}
-.container-comprador span {
-  color: #606C38;
-}
-.container-comprador span a {
-  color: #283618;
-  text-decoration: none;
 }
 
 .cart {
@@ -12167,6 +12138,51 @@ textarea.form-control-lg {
 }
 .home-comprador .card {
   color: #606C38;
+  border-color: #283618;
+}
+
+.btn-comprador {
+  background-color: #606C38;
+  color: #fff;
+}
+
+.btn-comprador:hover {
+  background-color: #70803E;
+  color: #fff;
+}
+
+.container-comprador .card-body.p-4.p-sm-5, .container-comprador .card {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #283618;
+  border-radius: 1rem;
+}
+.container-comprador input, .container-comprador hr {
+  border-color: #283618;
+}
+.container-comprador label {
+  color: #606C38;
+  font-size: smaller;
+}
+.container-comprador h5, .container-comprador .h5 {
+  color: #283618;
+}
+.container-comprador .btn.btn-login {
+  background-color: #283618;
+  color: #fff;
+}
+.container-comprador .btn-google {
+  border-color: #283618;
+  color: #606C38;
+}
+.container-comprador span {
+  color: #606C38;
+}
+.container-comprador span a {
+  color: #283618;
+  text-decoration: none;
+}
+.container-comprador hr {
   border-color: #283618;
 }
 
