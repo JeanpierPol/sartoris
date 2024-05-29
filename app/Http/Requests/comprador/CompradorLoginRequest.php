@@ -25,6 +25,7 @@ class CompradorLoginRequest extends FormRequest
         return [
             'email' => 'required|email|exists:compradores,email',
             'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 

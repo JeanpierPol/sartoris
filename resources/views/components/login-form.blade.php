@@ -24,6 +24,9 @@
                         <div class="d-grid">
                             <button class="btn btn-login fw-bold" type="submit">Iniciar sesión</button>
                         </div>
+                        <div class="form-group">
+                        {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
+                        </div>
                         <div class="mb-3 mt-3">
                             <span class="">¿No tienes cuenta? <a href="{{ route($registerRoute) }}">Regístrate</a></span>
                         </div>
