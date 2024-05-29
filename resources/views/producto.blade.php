@@ -14,16 +14,16 @@
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         @if ($producto['imagenes'])
-                        @foreach ( $producto['imagenes'] as $key => $imagen)
-                        <div class="carousel-item @if ($key == 0) active @endif">
-                            <img src="{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
-                        </div>
-                        @endforeach
+                            @foreach ( $producto['imagenes'] as $key => $imagen)
+                                <div class="carousel-item @if ($key == 0) active @endif">
+                                    <img src="{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
+                                </div>
+                            @endforeach
 
                         @else
-                        <div class="carousel-item active">
-                            <img src="/img/productos/default-product.png" class="d-block w-100" alt="{{$producto['nombre']}}x">
-                        </div>
+                            <div class="carousel-item active">
+                                <img src="/img/productos/default-product.png" class="d-block w-100" alt="{{$producto['nombre']}}x">
+                            </div>
                         @endif
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -58,12 +58,12 @@
                     @endphp
                     <div class="mb-3">
                         @if ($producto['descuento'] > 0)
-                        <p class="h5 text-danger">Oferta {{$producto->descuento}}%</p>
-                        <p class="text-danger"></p>
-                        <p class="small">Precio original: <s class="text-danger">{{$producto->precio_venta}}€</s></p>
-                        <p class="h5">Precio final: {{$precio_final}} €</p>
+                            <p class="h5 text-danger">Oferta {{$producto->descuento}}%</p>
+                            <p class="text-danger"></p>
+                            <p class="small">Precio original: <s class="text-danger">{{$producto->precio_venta}}€</s></p>
+                            <p class="h5">Precio final: {{$precio_final}} €</p>
                         @else
-                        <p class="h5">Precio final: {{$precio_final}} €</p>
+                            <p class="h5">Precio final: {{$precio_final}} €</p>
                         @endif
 
                     </div>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     @if ($producto->existencias > 0)
-                    <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
+                        <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
                     @else
                         <span class="text-danger">No hay productos</span>
                     @endif

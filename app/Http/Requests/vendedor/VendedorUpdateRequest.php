@@ -30,7 +30,7 @@ class VendedorUpdateRequest extends FormRequest
             'telefono'=>'min:3|numeric',
             'email' => ['email', Rule::unique('vendedores')->ignore($this->user()->id)],
             'fecha_nac ' => 'before:today|after:01-01-1900',
-            'imagen' => 'mimes:png,jpg,jpeg',
+            'imagen' => 'mimes:jpeg,jpg,png|max:2048',
 
         ];
     }
@@ -57,6 +57,7 @@ class VendedorUpdateRequest extends FormRequest
             'fecha_nac.after' => 'La fecha de nacimiento debe ser posterior a 01-01-1900',
 
             'imagen.mimes' => 'La imagen debe ser un archivo de tipo: png, jpg, jpeg',
+            'imagen.max' => 'La imagen no debe ser mayor de 2MB',
         ];
     }
 }
