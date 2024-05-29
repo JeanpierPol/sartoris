@@ -11,7 +11,7 @@
                         @if ($producto['imagenes'])
                         @foreach ( $producto['imagenes'] as $key => $imagen)
                         <div class="carousel-item @if ($key == 0) active @endif">
-                            <img src="/{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
+                            <img src="{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
                         </div>
                         @endforeach
 
@@ -115,7 +115,7 @@
                             <div class="d-flex mb-3">
                                 <a href="{{route('producto', $producto->id)}}" class="me-3">
                                     @if ($producto->imagen_portada)
-                                    <img src="/{{$producto->imagen_portada}}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    <img src="{{$producto->imagen_portada}}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @else
                                     <img src="/img/productos/default-product.png" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @endif

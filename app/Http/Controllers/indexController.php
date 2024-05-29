@@ -51,6 +51,7 @@ class indexController extends Controller
 
     public function searchVendedor(Request $request)
     {
+       
         $productos = Producto::where('vendedor_id', $request->id)
             ->with('vendedor')
             ->get();
