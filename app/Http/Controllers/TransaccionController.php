@@ -59,7 +59,6 @@ class TransaccionController extends Controller
             }
 
             DB::commit();
-            Log::info('Transacción completada, enviando correo a: ' . $comprador->email);
 
             Mail::to($comprador->email)->send(new NotificacionPagoMail($productos));
 
