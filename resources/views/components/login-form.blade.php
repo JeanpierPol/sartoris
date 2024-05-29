@@ -26,6 +26,7 @@
                         </div>
                         <div class="form-group">
                         {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
+                        <x-error-message field="g-recaptcha-response" />
                         </div>
                         <div class="mb-3 mt-3">
                             <span class="">¿No tienes cuenta? <a href="{{ route($registerRoute) }}">Regístrate</a></span>

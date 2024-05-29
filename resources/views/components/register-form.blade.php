@@ -61,6 +61,7 @@
                             </div>
                             <div class="form-group mt-3">
                                 {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
+                                <x-error-message field="g-recaptcha-response" />
                             </div>
                             <div class="form-check d-flex justify-content-start mb-4 pb-3">
                                 <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" required />

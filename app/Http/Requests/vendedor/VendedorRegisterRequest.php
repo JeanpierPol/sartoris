@@ -70,6 +70,7 @@ class VendedorRegisterRequest extends FormRequest
             'passwordVendedorConfirmation.same' => 'La confirmación de la contraseña debe coincidir con la contraseña',
 
             'g-recaptcha-response.required' => 'El captcha es requerido',
+            'g-recaptcha-response.captcha' => 'Captcha error!',
         ];
     }
 }
