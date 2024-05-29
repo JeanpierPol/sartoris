@@ -30,31 +30,31 @@ class TransaccionController extends Controller
             $total = 0;
 
             foreach ($productos as $id => $productoData) {
-                Log::info('Procesando producto ID: ' . $id);
-
                 $producto = Producto::find($id);
 
                 if ($producto) {
-                    $cantidad = $productoData['cantidad'];
-                    $precioUnitario = $producto->precio_venta;
-                    $subtotal = $cantidad * $precioUnitario;
+                    if ($producto->existencias > 0) {
+                        $cantidad = $productoData['cantidad'];
+                        $precioUnitario = $producto->precio_venta;
+                        $subtotal = $cantidad * $precioUnitario;
 
-                    $detalleTransaccion = new DetalleTransaccion([
-                        'comprador_id' => $comprador->id,
-                        'producto_id' => $producto->id,
-                        'cantidad' => $cantidad,
-                        'precio_unitario' => $precioUnitario,
-                        'subtotal' => $subtotal,
-                        'fecha' => now(),
-                    ]);
-                    $detalleTransaccion->save();
+                        $detalleTransaccion = new DetalleTransaccion([
+                            'comprador_id' => $comprador->id,
+                            'producto_id' => $producto->id,
+                            'cantidad' => $cantidad,
+                            'precio_unitario' => $precioUnitario,
+                            'subtotal' => $subtotal,
+                            'fecha' => now(),
+                        ]);
+                        $detalleTransaccion->save();
 
-                    $producto->existencias -= $cantidad;
-                    $producto->save();
+                        $producto->existencias -= $cantidad;
+                        $producto->save();
 
-                    $total += $subtotal;
-                } else {
-                    Log::warning('Producto no encontrado: ' . $id);
+                        $total += $subtotal;
+                    } else {
+                        return redirect()->route('cart')->with('error', 'Error al procesar la transacción.');
+                    }
                 }
             }
 
@@ -67,9 +67,7 @@ class TransaccionController extends Controller
             return redirect()->route('comprador.home')->with('success', 'Transacción completada exitosamente.');
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Error en la transacción: ' . $e->getMessage());
             return redirect()->route('cart')->with('error', 'Error al procesar la transacción.');
         }
     }
 }
-

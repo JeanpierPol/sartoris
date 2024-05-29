@@ -2,6 +2,11 @@
 @section('title', 'Producto')
 @section('content')
 {{ Breadcrumbs::render('producto', $producto) }}
+
+@if (isset($error))
+    {{var_dump($error)}}
+@endif
+
 <section class="py-5">
     <div class="container container-comprador">
         <div class="row gx-5">
@@ -40,12 +45,13 @@
                     <span>Vendedor: <a href="{{route('vendedor-productos', $producto->vendedor->id)}}">{{$producto->vendedor->nickname}}</a></span>
 
                     <div class="d-flex flex-row my-3">
-                        <span class="text-muted">Existencias : {{$producto['existencias']}}</span>
-                        @if ($producto['existencias']>0)
-                            <span class="text-success ms-2">Disponible</span>
-                        @else
-                            <span class="text-danger ms-2">No hay</span>
+                        <span class="text-muted">Existencias : 
+                            @if ($producto['existencias']>0)
+                                <span class="text-success ms-2">{{$producto['existencias']}} Disponible</span>
+                            @else
+                                <span class="text-danger ms-2">No hay</span>
                         @endif
+                        </span>
                     </div>
                     @php
                     $precio_final = $producto->precio_venta - ($producto->precio_venta * ($producto->descuento / 100));
@@ -94,7 +100,12 @@
                             </div>
                         </div>
                     </div>
+                    @if ($producto->existencias > 0)
                     <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
+                    @else
+                        <span class="text-danger">No hay productos</span>
+                    @endif
+                    
                 </div>
             </main>
         </div>
