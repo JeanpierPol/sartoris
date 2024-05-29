@@ -2,8 +2,9 @@
 
     RewriteBase /
 
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteRule ^(.*)$ public/$1 [L]
     </IfModule>
 
     RewriteEngine On
