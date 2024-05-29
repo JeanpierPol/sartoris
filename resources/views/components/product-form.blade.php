@@ -78,7 +78,9 @@
                 </div>
             </div>
             <input type="submit" class="btn btn-login fw-bold" value="{{ $buttonText }}">
+            <a href="{{url()->previous()}}" class="btn btn-login fw-bold">Cancelar</a>
         </form>
+        
     </div>
 </section>
 

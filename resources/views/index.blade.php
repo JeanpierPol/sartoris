@@ -35,7 +35,7 @@
                             @endif
                             <div class="d-flex justify-content-between mb-3">
                                 <h5 class="mb-0">{{$producto->nombre}}</h5>
-                                <h5 class="text-dark mb-0">${{$precio_final}} €</h5>
+                                <h5 class="text-dark mb-0">{{$precio_final}} €</h5>
                             </div>
                         </div>
                     </div>

@@ -27,8 +27,8 @@ class VendedorRegisterRequest extends FormRequest
             'nickname' => 'required|unique:vendedores,nickname',
             'pais' => 'string',
             'direccion' => 'string',
-            'telefono' => 'numeric',
-            'email' => 'required|unique:vendedores,email',
+            'telefono' => 'required|phone:ES',
+            'email' => 'required|unique:compradores,email|email:rfc,dns',
             'fecha_nac' => 'required|date|before:today|after:1900-01-01',
             'password' => 'required|min:8|string',
             'passwordVendedorConfirmation' => 'required|same:password',
@@ -52,10 +52,11 @@ class VendedorRegisterRequest extends FormRequest
 
             'direccion.string' => 'La dirección debe ser una cadena de texto',
 
-            'telefono.numeric' => 'El teléfono debe ser un número',
+            'telefono.phone' => 'El teléfono debe ser válido',
 
             'email.required' => 'El email es requerido',
             'email.unique' => 'El email ya está en uso',
+            'email.email' => 'email no válido',
 
             'fecha_nac.required' => 'La fecha de nacimiento es requerida',
             'fecha_nac.date' => 'La fecha de nacimiento debe ser una fecha válida',

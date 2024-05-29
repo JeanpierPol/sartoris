@@ -28,7 +28,7 @@ class CompradorRegisterRequest extends FormRequest
             'pais' => 'string',
             'direccion' => 'string',
             'telefono' => 'numeric',
-            'email' => 'required|unique:compradores,email',
+            'email' => 'required|unique:compradores,email|email:rfc,dns',
             'fecha_nac' => 'required|date|before:today|after:1900-01-01',
             'password' => 'required|min:8|string',
             'passwordCompradorConfirmation' => 'required|same:password',
@@ -56,6 +56,7 @@ class CompradorRegisterRequest extends FormRequest
 
             'email.required' => 'El email es requerido',
             'email.unique' => 'El email ya está en uso',
+            'email.email' => 'El email no es válido',
 
             'fecha_nac.required' => 'La fecha de nacimiento es requerida',
             'fecha_nac.date' => 'La fecha de nacimiento debe ser una fecha válida',
