@@ -27,7 +27,7 @@ class CompradorRegisterRequest extends FormRequest
             'nickname' => 'required|unique:compradores,nickname',
             'pais' => 'string',
             'direccion' => 'string',
-            'telefono' => 'numeric',
+            'telefono' => ['required','regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => 'required|unique:compradores,email|email:rfc,dns',
             'fecha_nac' => 'required|date|before:today|after:1900-01-01',
             'password' => 'required|min:8|string',
