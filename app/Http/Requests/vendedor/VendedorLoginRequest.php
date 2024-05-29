@@ -25,6 +25,7 @@ class VendedorLoginRequest extends FormRequest
         return [
             'email' => 'required|email|exists:vendedores,email',
             'password' => 'required|string',
+            'g-recaptcha-response' => 'required|captcha',
         ];
         
     }

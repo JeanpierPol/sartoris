@@ -3,8 +3,8 @@
 @section('content')
 {{ Breadcrumbs::render('productos') }}
 
-<section class="productos">
-    <div class="container py-5">
+<section class="productos ">
+    <div class="container py-5 container-comprador">
         <div class="row">
             @foreach ($productos as $producto)
             
@@ -45,7 +45,7 @@
                         <div class="d-flex justify-content-between mb-2">
                             <p class="text-muted mb-0">Existencias: <span class="fw-bold">{{$producto->existencias}}</span></p>
                             <div>
-                                <a type="button" class="btn btn-primary" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
+                                <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
                                 <a type="button" class="btn btn-success" href="{{route('producto', $producto->id)}}">Ver mas</a>
                             </div>
                         </div>

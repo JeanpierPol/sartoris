@@ -32,6 +32,7 @@ class VendedorRegisterRequest extends FormRequest
             'fecha_nac' => 'required|date|before:today|after:1900-01-01',
             'password' => 'required|min:8|string',
             'passwordVendedorConfirmation' => 'required|same:password',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 
@@ -67,6 +68,9 @@ class VendedorRegisterRequest extends FormRequest
 
             'passwordVendedorConfirmation.required' => 'La confirmación de la contraseña es requerida',
             'passwordVendedorConfirmation.same' => 'La confirmación de la contraseña debe coincidir con la contraseña',
+
+            'g-recaptcha-response.required' => 'El captcha es requerido',
+            'g-recaptcha-response.captcha' => 'Captcha error!',
         ];
     }
 }

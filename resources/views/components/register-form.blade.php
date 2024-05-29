@@ -59,11 +59,16 @@
                                 <input type="password" class="form-control" id="contrasena{{ ucfirst($userType) }}Confirmation" name="password{{ ucfirst($userType) }}Confirmation">
                                 <x-error-message field="password{{ ucfirst($userType) }}Confirmation" />
                             </div>
+                            <div class="form-group mt-3">
+                                {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
+                                <x-error-message field="g-recaptcha-response" />
+                            </div>
                             <div class="form-check d-flex justify-content-start mb-4 pb-3">
                                 <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" required />
                                 <label class="form-check-label" for="form2Example3">
                                     <span> Acepto los <a href="#!" class=""><u>terminos y condiciones</u></a> de la pagina web</span>
                             </div>
+                            
                             <div class="d-grid">
                                 <button class="btn btn-login fw-bold" type="submit">Registrarse</button>
                             </div>
