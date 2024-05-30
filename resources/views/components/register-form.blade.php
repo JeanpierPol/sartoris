@@ -24,9 +24,9 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="pais{{ ucfirst($userType) }}">País</label>
-                                <input type="text" class="form-control" id="pais{{ ucfirst($userType) }}" name="pais" value="{{old('pais')}}">
-                                <x-error-message field="pais" />
+                                <label for="provincia{{ ucfirst($userType) }}">País</label>
+                                <input type="text" class="form-control" id="provincia{{ ucfirst($userType) }}" name="provincia" value="{{old('provincia')}}">
+                                <x-error-message field="provincia" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="direccion{{ ucfirst($userType) }}">Dirección</label>

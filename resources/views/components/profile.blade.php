@@ -16,7 +16,7 @@
             @endif
             <h5 class="my-3">{{Auth::user()->nombre}} {{Auth::user()->apellido}}</h5>
             <p class="text-muted mb-1">Rol {{ $userType }}</p>
-            <p class="text-muted mb-4">{{Auth::user()->pais}}, {{Auth::user()->direccion}}</p>
+            <p class="text-muted mb-4">{{Auth::user()->provincia}}, {{Auth::user()->direccion}}</p>
             <div class="d-flex justify-content-center mb-2">
               <div class="d-grid">
                 <a class="btn fw-bold btn-login" href="{{route($actionRoute)}}">Modificar datos</a>

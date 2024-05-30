@@ -35,7 +35,7 @@ class VendedorController extends Controller
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
             'nickname' => $request->nickname,
-            'pais' => $request->pais,
+            'provincia' => $request->provincia,
             'direccion' => $request->direccion,
             'telefono' => $request->telefono,
             'email' => $request->email,

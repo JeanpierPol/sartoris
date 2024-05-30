@@ -25,7 +25,7 @@ class CompradorRegisterRequest extends FormRequest
             'nombre' => 'required|min:3',
             'apellido' => 'required|min:3',
             'nickname' => 'required|unique:compradores,nickname',
-            'pais' => 'string',
+            'provincia' => 'string',
             'direccion' => 'string',
             'telefono' => ['required','regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => 'required|unique:compradores,email|email:rfc,dns',
@@ -48,7 +48,7 @@ class CompradorRegisterRequest extends FormRequest
             'nickname.required' => 'El nickname es requerido',
             'nickname.unique' => 'El nickname ya está en uso',
 
-            'pais.string' => 'El país debe ser una cadena de texto',
+            'provincia.string' => 'El país debe ser una cadena de texto',
 
             'direccion.string' => 'La dirección debe ser una cadena de texto',
 

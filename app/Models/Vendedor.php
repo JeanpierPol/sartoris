@@ -25,7 +25,7 @@ class Vendedor extends Authenticatable
         'apellido',
         'nickname',
         'fecha_nac',
-        'pais',
+        'provincia',
         'direccion',
         'telefono',
         'email',

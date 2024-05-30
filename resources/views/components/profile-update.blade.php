@@ -45,9 +45,9 @@
               </div>
               <div class="row gx-3 mb-3">
                 <div class="col-md-6">
-                  <label class="small mb-1" for="pais{{ ucfirst($userType)}}">País</label>
-                  <input class="form-control" id="pais{{ ucfirst($userType)}}" type="text" value="{{Auth::user()->pais}}" name="pais">
-                  <x-error-message field="pais" />
+                  <label class="small mb-1" for="provincia{{ ucfirst($userType)}}">Provincia</label>
+                  <input class="form-control" id="provincia{{ ucfirst($userType)}}" type="text" value="{{Auth::user()->provincia}}" name="provincia">
+                  <x-error-message field="provincia" />
                 </div>
                 <div class="col-md-6">
                   <label class="small mb-1" for="direccion{{ ucfirst($userType)}}">Dirección</label>

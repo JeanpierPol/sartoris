@@ -33,7 +33,7 @@ class CompradorProfileController extends Controller
         }
         $user->nombre = $request->nombre;
         $user->apellido = $request->apellido;
-        $user->pais = $request->pais;
+        $user->provincia = $request->provincia;
         $user->direccion = $request->direccion;
         $user->telefono = $request->telefono;
         $user->fecha_nac = $request->fecha_nac;

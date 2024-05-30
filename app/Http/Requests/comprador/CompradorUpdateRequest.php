@@ -26,7 +26,7 @@ class CompradorUpdateRequest extends FormRequest
         return [
             'nombre' => 'min:3',
             'apellido' => 'min:3',
-            'pais'=>'min:3',
+            'provincia'=>'min:3',
             'direccion'=>'min:3',
             'telefono'=>['regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => ['email', Rule::unique('compradores')->ignore($this->user()->id)],
@@ -43,7 +43,7 @@ class CompradorUpdateRequest extends FormRequest
 
             'apellido.min' => 'El apellido debe tener al menos 3 caracteres',
 
-            'pais.min' => 'El país debe tener al menos 3 caracteres',
+            'provincia.min' => 'El país debe tener al menos 3 caracteres',
 
             'direccion.min' => 'La dirección debe tener al menos 3 caracteres',
 
