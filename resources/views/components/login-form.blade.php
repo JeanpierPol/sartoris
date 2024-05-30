@@ -33,9 +33,9 @@
                         </div>
                         <hr class="my-4">
                         <div class="d-grid mb-2">
-                            <button class="btn btn-google fw-bold" type="submit">
+                            <a class="btn btn-google fw-bold" href="{{ route($googleRoute)}}">
                                 <i class="bi bi-google"></i> Continuar con Google
-                            </button>
+                            </a>
                         </div>
                     </form>
                 </div>

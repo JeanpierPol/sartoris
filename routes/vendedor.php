@@ -1,12 +1,17 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
 
 Route::prefix('vendedor')->name('vendedor.')->group(function () {
+    Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirect')->name('google-redirect');
+
+    Route::get('/google-auth/callback', 'App\Http\Controllers\GoogleController@callback')->name('google-callback');
+
     Route::namespace('App\Http\Controllers\vendedor')->group(function () {
         Route::middleware(['guest:vendedor', 'revalidate'])->group(function () {
             Route::view('/login', 'vendedor.auth.login')->name('login');
             Route::post('/login', 'VendedorController@loginHandler')->name('login-handler');
-
             Route::view('/register', 'vendedor.auth.register')->name('register');
             Route::post('/register', 'VendedorController@registerHandler')->name('register-handler');
         });

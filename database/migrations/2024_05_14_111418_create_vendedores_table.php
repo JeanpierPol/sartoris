@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('nickname', 100);
             $table->binary('imagen')->nullable();
             $table->string('password', 100);
+            $table->string('google-__id')->nullable();
             $table->date('fecha_nac');
             $table->string('telefono', 20)->nullable();
-            $table->string('pais', 20)->nullable();
+            $table->string('provincia', 20)->nullable();
             $table->string('direccion', 70)->nullable();
             $table->integer('total_ventas')->default(0);
             $table->timestamps();

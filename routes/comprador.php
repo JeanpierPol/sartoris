@@ -1,12 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
+
+
 
 Route::prefix('comprador')->name('comprador.')->group(function () {
+
+    Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirect')->name('google-redirect');
+
+    Route::get('/google-auth/callback', 'App\Http\Controllers\GoogleController@callback')->name('google-callback');
+
     Route::namespace('App\Http\Controllers\comprador')->group(function () {
         Route::middleware(['guest:comprador', 'revalidate'])->group(function () {
             Route::view('/login', 'comprador.auth.login')->name('login');
             Route::post('/login', 'CompradorController@loginHandler')->name('login-handler');
+
 
             Route::view('/register', 'comprador.auth.register')->name('register');
             Route::post('/register', 'CompradorController@registerHandler')->name('register-handler');
@@ -25,4 +35,3 @@ Route::prefix('comprador')->name('comprador.')->group(function () {
         });
     });
 });
-

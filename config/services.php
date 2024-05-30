@@ -34,7 +34,12 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'http://example.com/callback-url',
+        'redirect' =>  env('ASSET_URL') . '/comprador/google-auth/callback',
     ],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' =>  env('ASSET_URL') . '/vendedor/google-auth/callback',
+    ],   
 
 ];
