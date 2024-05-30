@@ -8,7 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::prefix('comprador')->name('comprador.')->group(function () {
 
-    Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirect')->name('google-redirect');
+    Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirectComprador')->name('google-redirect');
 
     Route::get('/google-auth/callback', 'App\Http\Controllers\GoogleController@callback')->name('google-callback');
 

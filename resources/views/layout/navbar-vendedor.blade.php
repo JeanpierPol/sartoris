@@ -28,6 +28,7 @@
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         @if (Auth::user()->hasProfilePicture())
             <img src="{{ Auth::user()->imagen }}" width="40" height="40" class="rounded-circle">
+            
         @else
             <img src="/img/usuarios/default-avatar.jpg" awidth="40" height="40" class="rounded-circle"/>
         @endif

@@ -25,6 +25,7 @@ class Comprador extends Authenticatable
         'apellido',
         'nickname',
         'fecha_nac',
+        'google_id',
         'provincia',
         'direccion',
         'telefono',

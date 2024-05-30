@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('compradores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
-            $table->string('apellido', 100);
+            $table->string('apellido', 100)->nullable();
             $table->string('email', 50)->unique();
-            $table->string('nickname', 100);
+            $table->string('nickname', 100)->nullable();
             $table->binary('imagen')->nullable();
-            $table->string('password', 100);
-            $table->string('google-__id')->nullable();
-            $table->date('fecha_nac');
+            $table->string('password', 100)->nullable();
+            $table->string('google_id')->nullable();
+            $table->date('fecha_nac')->nullable();
             $table->string('telefono', 20)->nullable();
             $table->string('provincia', 20)->nullable();
             $table->string('direccion', 70)->nullable();

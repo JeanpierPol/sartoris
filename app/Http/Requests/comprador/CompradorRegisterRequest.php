@@ -48,7 +48,7 @@ class CompradorRegisterRequest extends FormRequest
             'nickname.required' => 'El nickname es requerido',
             'nickname.unique' => 'El nickname ya está en uso',
 
-            'provincia.string' => 'El país debe ser una cadena de texto',
+            'provincia.string' => 'El provincia debe ser una cadena de texto',
 
             'direccion.string' => 'La dirección debe ser una cadena de texto',
 

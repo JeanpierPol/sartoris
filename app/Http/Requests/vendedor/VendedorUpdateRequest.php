@@ -42,7 +42,7 @@ class VendedorUpdateRequest extends FormRequest
 
             'apellido.min' => 'El apellido debe tener al menos 3 caracteres',
 
-            'provincia.min' => 'El país debe tener al menos 3 caracteres',
+            'provincia.min' => 'El provincia debe tener al menos 3 caracteres',
 
             'direccion.min' => 'La dirección debe tener al menos 3 caracteres',
 

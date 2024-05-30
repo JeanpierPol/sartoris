@@ -163,7 +163,7 @@ return [
         'concept'                  => 'concepto',
         'conditions'               => 'condiciones',
         'content'                  => 'contenido',
-        'country'                  => 'país',
+        'country'                  => 'provincia',
         'cover'                    => 'portada',
         'created_at'               => 'creado el',
         'creator'                  => 'creador',
