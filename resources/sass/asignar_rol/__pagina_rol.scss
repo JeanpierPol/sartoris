@@ -1,31 +1,28 @@
-    
-    .contenedor-rol{
-       
-        .imagen_asignar_rol{
-        height: 100vh;  
+.contenedor-rol {
+    .imagen_asignar_rol {
+        height: 100vh;
         width: 50%;
         background-repeat: no-repeat;
+        background-image: url($image-rol);
     }
 
-    .contenedor-rol{
+    .col-6{
         background-color: $color-comprador-secundario;
-        p{
-            text-align: center;
-            margin: auto;
-            padding: 5%;
-            
-        }
+    }
+    p {
+        text-align: center;
+        margin: auto;
+        padding: 5%;
     }
 
-    .btn-comprador, .btn-vendedor{
+    .btn-comprador,.btn-vendedor {
         padding: 5%;
         background-color: $color-vendedor-secundario;
         color: $color-blanco;
-        &:hover, &:focus{
+        &:hover,
+        &:focus {
             background-color: $color-vendedor-secundario;
-            
         }
-        
-
     }
+
 }

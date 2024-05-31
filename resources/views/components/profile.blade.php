@@ -9,11 +9,13 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            @if (Auth::user()->hasProfilePicture())
-            <img src="{{ Auth::user()->imagen }}" class="rounded-circle img-fluid" style="width: 150px;" />
-            @else
-            <img src="/img/usuarios/default-avatar.jpg" class="rounded-circle img-fluid" style="width: 150px;" />
-            @endif
+            <div class="avatar-container" style="width: 150px; height: 150px;">
+              @if (Auth::user()->hasProfilePicture())
+                <img src="{{ Auth::user()->imagen }}" class="avatar-image rounded-circle img-fluid" />
+              @else
+                <div class="default-avatar rounded-circle img-fluid"></div>
+              @endif
+            </div>
             <h5 class="my-3">{{Auth::user()->nombre}} {{Auth::user()->apellido}}</h5>
             <p class="text-muted mb-1">Rol {{ $userType }}</p>
             <p class="text-muted mb-4">{{Auth::user()->provincia}}, {{Auth::user()->direccion}}</p>
@@ -24,7 +26,6 @@
             </div>
           </div>
         </div>
-
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -38,7 +39,6 @@
               </div>
             </div>
             <hr>
-
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Apellido</p>
@@ -63,7 +63,6 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">{{date('d-m-Y', strtotime(Auth::user()->fecha_nac))}}</p>
-
               </div>
             </div>
             <hr>

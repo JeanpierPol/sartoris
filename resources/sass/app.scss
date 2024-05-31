@@ -1,7 +1,8 @@
 @import "~bootstrap/scss/bootstrap",
     "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-@import "colores/_colores";
+@import "variables/_variables";
 @import "asignar_rol/_pagina_rol";
+@import "general/_general";
 
 @import "vendedor/_login_vendedor", "vendedor/_navbar_vendedor",
     "vendedor/_profile_vendedor", "vendedor/_producto",

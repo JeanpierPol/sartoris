@@ -25,13 +25,14 @@
       </ul>
       @if (Auth::user())
       <li class="nav-item dropdown d-flex mr-4">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        @if (Auth::user()->hasProfilePicture())
-            <img src="{{ Auth::user()->imagen }}" width="40" height="40" class="rounded-circle">
-            
-        @else
-            <img src="/img/usuarios/default-avatar.jpg" awidth="40" height="40" class="rounded-circle"/>
-        @endif
+      <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="avatar-container">
+            @if (Auth::guard('vendedor')->user()->hasProfilePicture())
+              <img src="{{ Auth::guard('vendedor')->user()->imagen }}" class="avatar-image">
+            @else
+              <div class="default-avatar"></div>
+            @endif
+          </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end">
         <li><a class="dropdown-item" href="{{route('vendedor.home')}}">Inicio</a></li>

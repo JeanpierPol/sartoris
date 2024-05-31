@@ -27,28 +27,28 @@
             @endphp
 
             @foreach (session('cart') as $id => $producto)
-            @php
-            $precio_con_descuento = $producto['precio_venta'] - ($producto['precio_venta'] * ($producto['descuento'] / 100));
-            $subtotal = $precio_con_descuento * $producto['cantidad'];
-            $precio_final += $subtotal;
-            @endphp
-            <li>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="small">
-                  <p class="small m-0">{{ $producto['nombre'] }}</p>
-                  <div class="d-flex justify-content-between">
-                    <span class="small">{{ $precio_con_descuento }}€ x {{ $producto['cantidad'] }}</span>
+              @php
+                $precio_con_descuento = $producto['precio_venta'] - ($producto['precio_venta'] * ($producto['descuento'] / 100));
+                $subtotal = $precio_con_descuento * $producto['cantidad'];
+                $precio_final += $subtotal;
+              @endphp
+              <li>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="small">
+                    <p class="small m-0">{{ $producto['nombre'] }}</p>
+                    <div class="d-flex justify-content-between">
+                      <span class="small">{{ $precio_con_descuento }}€ x {{ $producto['cantidad'] }}</span>
+                    </div>
                   </div>
+                  <form action="{{ route('delete-cart', $id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="badge bg-danger p-2 m-0 border-0">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </form>
                 </div>
-                <form action="{{ route('delete-cart', $id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="badge bg-danger p-2 m-0 border-0">
-                    <i class="bi bi-x-lg"></i>
-                  </button>
-                </form>
-              </div>
-            </li>
+              </li>
             @endforeach
             <li>
               <hr class="dropdown-divider">
@@ -76,15 +76,17 @@
       </ul>
       @if (Auth::guard('comprador')->check())
       <li class="nav-item dropdown d-flex mr-4">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          @if (Auth::guard('comprador')->user()->hasProfilePicture())
-          <img src="{{ Auth::guard('comprador')->user()->imagen }}" width="40" height="40" class="rounded-circle">
-          @else
-          <img src="/img/usuarios/default-avatar.jpg" width="40" height="40" class="rounded-circle" />
-          @endif
+        <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="avatar-container">
+            @if (Auth::guard('comprador')->user()->hasProfilePicture())
+              <img src="{{ Auth::guard('comprador')->user()->imagen }}" class="avatar-image">
+            @else
+              <div class="default-avatar"></div>
+            @endif
+          </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end">
-        <li><a class="dropdown-item" href="{{route('comprador.home')}}">Inicio</a></li>
+          <li><a class="dropdown-item" href="{{route('comprador.home')}}">Inicio</a></li>
           <li><a class="dropdown-item" href="{{route('comprador.profile')}}">Mis datos</a></li>
           <li>
             <hr class="dropdown-divider">
