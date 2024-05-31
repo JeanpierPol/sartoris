@@ -11989,44 +11989,6 @@ textarea.form-control-lg {
   background-color: #DDA15E;
 }
 
-.container-vendedor .card-body.p-4.p-sm-5, .container-vendedor .card {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #BC6C25;
-  border-radius: 1rem;
-}
-.container-vendedor input, .container-vendedor hr {
-  border-color: #BC6C25;
-}
-.container-vendedor label {
-  color: #DDA15E;
-  font-size: smaller;
-}
-.container-vendedor h5, .container-vendedor .h5 {
-  color: #BC6C25;
-}
-.container-vendedor .col-lg-5 {
-  width: 60%;
-}
-.container-vendedor .btn.btn-login {
-  background-color: #BC6C25;
-  color: #fff;
-}
-.container-vendedor .btn-google {
-  border-color: #BC6C25;
-  color: #DDA15E;
-}
-.container-vendedor span {
-  color: #DDA15E;
-}
-.container-vendedor span a {
-  color: #BC6C25;
-  text-decoration: none;
-}
-.container-vendedor .form-group {
-  margin: 1rem 0 1rem 0;
-}
-
 .navbar-vendedor {
   --bs-link-color:#f70a0a;
   --bs-link-hover-color:#f70a0a;
@@ -12085,12 +12047,48 @@ textarea.form-control-lg {
 }
 
 .btn-vendedor {
+  background-color: #DDA15E;
+  color: #fff;
+}
+
+.btn-vendedor:hover {
+  background-color: #e8ad69;
+  color: #fff;
+}
+
+.container-vendedor .card-body.p-4.p-sm-5, .container-vendedor .card {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #BC6C25;
+  border-radius: 1rem;
+}
+.container-vendedor input, .container-vendedor hr {
+  border-color: #BC6C25;
+}
+.container-vendedor label {
+  color: #DDA15E;
+  font-size: smaller;
+}
+.container-vendedor h5, .container-vendedor .h5 {
+  color: #BC6C25;
+}
+.container-vendedor .btn.btn-login {
   background-color: #BC6C25;
   color: #fff;
 }
-.btn-vendedor:hover {
-  background-color: #DDA15E;
-  color: #fff;
+.container-vendedor .btn-google {
+  border-color: #BC6C25;
+  color: #DDA15E;
+}
+.container-vendedor span {
+  color: #DDA15E;
+}
+.container-vendedor span a {
+  color: #BC6C25;
+  text-decoration: none;
+}
+.container-vendedor hr {
+  border-color: #BC6C25;
 }
 
 .home-vendedor .card .card-block {

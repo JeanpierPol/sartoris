@@ -1,9 +1,52 @@
-.btn-vendedor {
-    background-color: $color-vendedor-primario;
+.btn-vendedor{
+    background-color: $color-vendedor-secundario;
     color: $color-blanco;
-    
-    &:hover {
-        background-color: $color-vendedor-secundario; 
-        color: $color-blanco; 
+}
+.btn-vendedor:hover{
+    background-color: $hover-vendedor-secundario;
+    color: $color-blanco;
+}
+
+.container-vendedor{
+    .card-body.p-4.p-sm-5, .card{
+        border-width: 1px;
+        border-style: solid;
+        border-color: $color-vendedor-primario;
+        border-radius: 1rem;
     }
+    input, hr{
+        border-color: $color-vendedor-primario;
+    }
+    label{
+        color: $color-vendedor-secundario;
+        font-size: smaller;
+    }
+    h5{
+        color: $color-vendedor-primario;
+    }
+
+
+    .btn.btn-login{
+        background-color: $color-vendedor-primario;
+        color: $color-blanco;
+    }
+
+    .btn-google{
+        border-color: $color-vendedor-primario;
+        color: $color-vendedor-secundario;
+    }
+
+    span{
+        color: $color-vendedor-secundario;
+        a{
+            color: $color-vendedor-primario;
+            text-decoration: none;
+        }
+    }
+
+    hr{
+        border-color: $color-vendedor-primario;
+    }
+
+    
 }
