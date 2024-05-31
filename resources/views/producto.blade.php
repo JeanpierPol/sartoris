@@ -22,7 +22,7 @@
 
                         @else
                             <div class="carousel-item active">
-                                <img src="/img/productos/default-product.png" class="d-block w-100" alt="{{$producto['nombre']}}x">
+                                <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="d-block w-100" alt="{{$producto['nombre']}}x">
                             </div>
                         @endif
                     </div>
@@ -128,7 +128,7 @@
                                     @if ($producto->imagen_portada)
                                     <img src="{{$producto->imagen_portada}}" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @else
-                                    <img src="/img/productos/default-product.png" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
+                                    <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" style="min-width: 96px; height: 96px;" class="img-md img-thumbnail" />
                                     @endif
                                 </a>
                                 <div class="info">

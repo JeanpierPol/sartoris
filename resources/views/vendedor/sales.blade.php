@@ -36,7 +36,7 @@
                                             @if ($transaccion->producto->imagen_portada)
                                                 <img src="{{ asset($transaccion->producto->imagen_portada) }}" alt="{{ $transaccion->producto->nombre }}" style="width: 100px; height: auto;">
                                             @else
-                                                <img src="/img/productos/default-product.png" alt="{{ $transaccion->producto->nombre }}" style="width: 100px; height: auto;">
+                                                <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" alt="{{ $transaccion->producto->nombre }}" style="width: 100px; height: auto;">
                                             @endif
                                         </div>
                                         <div class="d-flex flex-column">

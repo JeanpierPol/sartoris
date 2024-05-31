@@ -41,7 +41,7 @@
                                                     @if ($producto['imagen_portada'])
                                                        <a href="{{route('producto', $id)}}"><img src="{{$producto['imagen_portada']}}" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a> 
                                                     @else
-                                                        <a href="{{route('producto', $id)}}"><img src="/img/productos/default-product.png" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a>
+                                                        <a href="{{route('producto', $id)}}"><img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="img-fluid rounded-3" alt="{{$producto['nombre']}}" style="width: 65px;"></a>
                                                     @endif
                                                 </div>
 
@@ -56,11 +56,11 @@
                                             </div>
                                             <div class="d-flex flex-row align-items-center">
                                                 <p class="fw-normal mb-0 mr-1"> Cantidad: </p>
-                                                <div style="width: 100px;">
+                                                <div>
 
                                                     <h5 class="fw-normal mb-0"> {{$producto['cantidad']}}</h5>
                                                 </div>
-                                                <div style="width: 80px;">
+                                                <div>
                                                     <h5 class="mb-0">{{ $subtotal}}€</h5>
                                                 </div>
                                                 <form action="{{ route('delete-cart', $id) }}" method="POST">

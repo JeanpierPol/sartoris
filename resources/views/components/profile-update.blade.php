@@ -11,14 +11,13 @@
           <div class="card mb-4">
             <div class="card-header">Foto de perfil</div>
             <div class="card-body text-center">
-              <div class="avatar-container" style="width: 150px; height: 150px;">
-                @if (Auth::user()->hasProfilePicture())
-                  <img src="{{ Auth::user()->imagen }}" class="avatar-image rounded-circle img-fluid" />
-                @else
-                  <div class="default-avatar rounded-circle img-fluid"></div>
-                @endif
-              </div>
-                <form action="{{ route($actionRoute) }}" method="POST" enctype="multipart/form-data">
+              @if (Auth::user()->hasProfilePicture())
+              <img src="{{ Auth::user()->imagen }}" class="rounded-circle img-fluid" style="width: 150px;" />
+             
+              @else
+              <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYVKuxiNrVgjma-ISqJ1CRZHQZ-Z4Jk5BCxJ6ze627neDniNHfyaO6qcSS6oiOb9oNKppBOJkzBbUrtSZ_5APBo_ALXPvzMH24=w1920-h965-rw-v1" class="rounded-circle img-fluid" style="width: 150px;" />
+              @endif
+              <form action="{{ route($actionRoute) }}" method="POST" enctype="multipart/form-data">
                 @csrf
               <div class="mt-4 mb-4">
               <input class="form-control" type="file" id="formFile" name="imagen" accept="image/png, image/jpeg" />
@@ -74,7 +73,6 @@
                 </div>
               </div>
               <input type="submit" value="Guardar cambios" class="btn btn-login">
-              <a href="javascript:history.back()" class="btn btn-login fw-bold">Cancelar</a>
             </form>
           </div>
         </div>

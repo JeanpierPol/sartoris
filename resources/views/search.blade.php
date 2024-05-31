@@ -19,7 +19,7 @@
                         @if ($producto->imagen_portada)
                             <img src="{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @else
-                            <img src="/img/productos/default-product.png" class="card-img-top w-100" alt="{{$producto->nombre}}" />
+                            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="card-img-top w-100" alt="{{$producto->nombre}}" />
                         @endif
                         
                         <div class="card-body">
