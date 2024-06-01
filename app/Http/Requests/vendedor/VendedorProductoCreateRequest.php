@@ -32,9 +32,14 @@ class VendedorProductoCreateRequest extends FormRequest
             'descripcion' => '',
             'imagen_portada.*' => 'mimes:png,jpg,jpeg',
             'imagenes' => 'array',
-            'precio_venta' => 'required|numeric|gt:0',
-            'descuento' => 'required|numeric|gt:0',
-            'existencias' => 'required|integer|min:0',
+            'talla' => 'required|array',
+            'talla.*' => 'required|string|in:S,M,L',
+            'precio_venta' => 'required|array',
+            'precio_venta.*' => 'required|numeric|gt:0',
+            'descuento' => 'required|array',
+            'descuento.*' => 'required|numeric|gt:0',
+            'existencias' => 'required|array',
+            'existencias.*' => 'required|integer|min:0',
         ];
     }
     
@@ -45,16 +50,21 @@ class VendedorProductoCreateRequest extends FormRequest
             'nombre.required' => 'El nombre es requerido',
             'nombre.unique' => 'El nombre ya está en uso',
             'imagen_portada.*.mimes' => 'La imagen debe ser un archivo de tipo: png, jpg, jpeg',
-
+            'talla.required' => 'La talla es requerida',
+            'talla.*.required' => 'Cada talla es requerida',
+            'talla.*.in' => 'Las tallas deben ser S, M, o L',
             'precio_venta.required' => 'El precio de venta es requerido',
-            'precio_venta.numeric' => 'El precio de venta debe ser un número',
-            'precio_venta.between' => 'El precio de venta debe estar entre 0 y 9999.99',
-
+            'precio_venta.*.required' => 'El precio de venta es requerido para cada variante',
+            'precio_venta.*.numeric' => 'El precio de venta debe ser un número',
+            'precio_venta.*.gt' => 'El precio de venta debe ser mayor que 0',
             'descuento.required' => 'El descuento es requerido',
-            'descuento.integer' => 'El descuento debe ser un número entero',
-
+            'descuento.*.required' => 'El descuento es requerido para cada variante',
+            'descuento.*.numeric' => 'El descuento debe ser un número entero',
+            'descuento.*.gt' => 'El descuento debe ser mayor que 0',
             'existencias.required' => 'Las existencias son requeridas',
-            'existencias.integer' => 'Las existencias deben ser un número entero',
+            'existencias.*.required' => 'Las existencias son requeridas para cada variante',
+            'existencias.*.integer' => 'Las existencias deben ser un número entero',
+            'existencias.*.min' => 'Las existencias no pueden ser negativas',
         ];
     }
 }

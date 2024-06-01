@@ -32,6 +32,7 @@ Route::prefix('vendedor')->name('vendedor.')->group(function () {
                 Route::get('/edit/{id}', 'ProductoController@editProducto')->name('edit-producto');                
                 Route::post('/update', 'ProductoController@updateProducto')->name('update-producto');
                 Route::post('/delete/{id}', 'ProductoController@deleteProducto')->name('delete-producto');
+                Route::delete('/variante/delete/{id}', 'ProductoController@deleteVariant')->name('delete-variante');
                 Route::get('/get-producto-categoria', 'ProductoController@getProductoCategoria')->name('get-producto-categoria');
                 Route::post('/create', 'ProductoController@createProducto')->name('create-producto');
             });

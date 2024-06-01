@@ -17,9 +17,6 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('imagen_portada')->nullable();
             $table->json('imagenes')->nullable();
-            $table->decimal('precio_venta', 11, 2);
-            $table->integer('descuento');
-            $table->integer('existencias');
             $table->unsignedBigInteger('categoria_id')->nullable();
             $table->unsignedBigInteger('vendedor_id')->nullable();
             

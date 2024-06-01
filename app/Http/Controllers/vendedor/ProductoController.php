@@ -7,6 +7,7 @@ use App\Http\Requests\vendedor\VendedorProductoCreateRequest;
 use App\Http\Requests\vendedor\VendedorProductoUpdateRequest;
 use App\Models\Categoria;
 use App\Models\Producto;
+use App\Models\Variante;
 use App\Models\Vendedor;
 use Illuminate\Http\Request;
 
@@ -40,15 +41,24 @@ class ProductoController extends Controller
         $producto->descripcion = $request->descripcion;
         $producto->imagen_portada = $producto_imagen_portada;
         $producto->imagenes = json_encode($producto_imagenes);
-        $producto->precio_venta = $request->precio_venta;
-        $producto->descuento = $request->descuento;
-        $producto->existencias = $request->existencias;
         $producto->vendedor_id = $id_vendedor;
         $producto->save();
 
         if ($request->has('categorias')) {
             $categorias = $request->input('categorias');
             $producto->categorias()->sync($categorias);
+        }
+
+        if ($request->has('talla')) {
+            foreach ($request->input('talla') as $index => $talla) {
+                $variante = new Variante();
+                $variante->producto_id = $producto->id;
+                $variante->talla = $talla;
+                $variante->precio_venta = $request->input('precio_venta')[$index];
+                $variante->descuento = $request->input('descuento')[$index];
+                $variante->existencias = $request->input('existencias')[$index];
+                $variante->save();
+            }
         }
 
         return redirect()->route('vendedor.producto.all-productos')->with('success', 'Producto creado exitosamente.');
@@ -58,9 +68,10 @@ class ProductoController extends Controller
     {
         $vendedor_id = auth()->id();
         $vendedor = Vendedor::findOrFail($vendedor_id);
-        $productos = $vendedor->productos;
+        $productos = $vendedor->productos()->with('variantes')->get();
         return view('vendedor.productos', compact('productos'));
     }
+    
 
     public function editProducto(Request $request)
     {
@@ -75,9 +86,6 @@ class ProductoController extends Controller
 
         $producto->nombre = $request->nombre;
         $producto->descripcion = $request->descripcion;
-        $producto->precio_venta = $request->precio_venta;
-        $producto->descuento = $request->descuento;
-        $producto->existencias = $request->existencias;
 
         if ($request->hasFile('imagen')) {
             $oldImages = $producto->oldImages();
@@ -108,8 +116,32 @@ class ProductoController extends Controller
             $producto->categorias()->detach();
         }
 
+        $variantesActuales = $producto->variantes()->pluck('id')->toArray();
+        $variantesSolicitadas = collect($request->input('talla'))->map(function ($talla, $index) use ($request) {
+            return [
+                'talla' => $talla,
+                'precio_venta' => $request->input('precio_venta')[$index],
+                'descuento' => $request->input('descuento')[$index],
+                'existencias' => $request->input('existencias')[$index]
+            ];
+        });
+
+        foreach ($variantesSolicitadas as $variante) {
+            if (isset($variante['id'])) {
+                $producto->variantes()->where('id', $variante['id'])->update($variante);
+                unset($variantesActuales[array_search($variante['id'], $variantesActuales)]);
+            } else {
+                $producto->variantes()->create($variante);
+            }
+        }
+
+        if (!empty($variantesActuales)) {
+            Variante::destroy($variantesActuales);
+        }
+
         return redirect()->route('vendedor.producto.all-productos')->with('success', 'Producto actualizado exitosamente.');
     }
+
 
     public function deleteProducto(Request $request)
     {
@@ -122,9 +154,18 @@ class ProductoController extends Controller
         }
         $producto->categorias()->detach();
         $producto->delete();
-        
+
         return redirect()->route('vendedor.producto.all-productos')->with('success', 'Producto eliminado exitosamente.');
     }
-    
-    
+
+    public function deleteVariant($id)
+    {
+        try {
+            $variante = Variante::findOrFail($id);
+            $variante->delete();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error eliminando la variante'], 500);
+        }
+    }
 }

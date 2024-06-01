@@ -16,9 +16,6 @@ class Producto extends Model
         'descripcion',
         'imagen_portada', 
         'imagenes', 
-        'precio_venta',
-        'descuento',
-        'existencias',
         'vendedor_id',
     ];
 
@@ -57,6 +54,11 @@ class Producto extends Model
     public function detalleTransacciones()
     {
         return $this->hasMany(DetalleTransaccion::class);
+    }
+
+    public function variantes()
+    {
+        return $this->hasMany(Variante::class);
     }
     
     public function getRouteKeyName()

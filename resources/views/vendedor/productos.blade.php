@@ -23,7 +23,8 @@
                         <thead>
                             <tr>
                                 <th>Producto</th>
-                                <th>Categoria</th>
+                                <th>Categoría</th>
+                                <th>Talla</th>
                                 <th>Existencias</th>
                                 <th>Descuento</th>
                                 <th>Precio</th>
@@ -32,39 +33,56 @@
                         </thead>
                         <tbody>
                             @foreach($productos as $producto)
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-start align-items-center product-name">
-                                        <div class="avatar-wrapper">
-                                        @if ($producto->imagen_portada)
-                                            <img src="{{ asset($producto->imagen_portada) }}" alt="{{ $producto->nombre }}" style="width: 100px; height: auto;">
-                                        @else
-                                            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" alt="{{ $producto->nombre }}" style="width: 100px; height: auto;">                                        
-                                        @endif
+                                <tr>
+                                    <td>
+                                        <div class="d-flex justify-content-start align-items-center product-name">
+                                            <div class="avatar-wrapper">
+                                                @if ($producto->imagen_portada)
+                                                    <img src="{{ asset($producto->imagen_portada) }}" alt="{{ $producto->nombre }}" style="width: 100px; height: auto;">
+                                                @else
+                                                    <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" alt="{{ $producto->nombre }}" style="width: 100px; height: auto;">
+                                                @endif
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <h6 class="text-body text-nowrap mb-0">{{ $producto->nombre }}</h6>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column">
-                                            <h6 class="text-body text-nowrap mb-0">{{ $producto->nombre }}</h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td> @foreach($producto->categorias as $categoria)
-                                    <small class="text-muted text-truncate d-none d-sm-block">{{ $categoria->nombre }}@if(!$loop->last),</small>
-                                    @endif
-                                    @endforeach
-                                </td>
-                                <td>{{ $producto->existencias }}</td>
-                                <td><span>{{ $producto->descuento }}</span></td>
-                                <td><span>{{ $producto->precio_venta }} €</span></td>
-                                <td>
-                                    <a type="button" class="btn btn-warning" href="{{ route('vendedor.producto.edit-producto', ['id' => $producto->id]) }}">Editar</a>
-                                    <form action="{{ route('vendedor.producto.delete-producto', ['id' => $producto->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                    </td>
+                                    <td>
+                                        @foreach($producto->categorias as $categoria)
+                                            <small class="text-muted text-truncate d-none d-sm-block">{{ $categoria->nombre }}@if(!$loop->last),</small>@endif
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ($producto->variantes as $variante)
+                                            <p> {{$variante->talla}}</p>
+                                        @endforeach
+                                    </td>
 
-                                </td>
-
-                            </tr>
+                                    <td>
+                                        @foreach ($producto->variantes as $variante)
+                                            <p> {{$variante->existencias}}</p>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ($producto->variantes as $variante)
+                                            <p> {{$variante->descuento}}</p>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @foreach ($producto->variantes as $variante)
+                                                <p> {{$variante->precio_venta}}</p>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-warning d-inline" href="{{ route('vendedor.producto.edit-producto', ['id' => $producto->id]) }}">Editar</a>
+                                        <form action="{{ route('vendedor.producto.delete-producto', ['id' => $producto->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger ">Eliminar</button>
+                                        </form>
+                                    </td>
+                                    
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
