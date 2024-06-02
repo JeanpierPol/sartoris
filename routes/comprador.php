@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-
-
-
 Route::prefix('comprador')->name('comprador.')->group(function () {
 
     Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirectComprador')->name('google-redirect');
@@ -13,7 +10,7 @@ Route::prefix('comprador')->name('comprador.')->group(function () {
     Route::get('/google-auth/callback', 'App\Http\Controllers\GoogleController@callback')->name('google-callback');
 
     Route::namespace('App\Http\Controllers\comprador')->group(function () {
-        Route::middleware(['guest:comprador', 'revalidate'])->group(function () {
+        Route::middleware(['guest:comprador', 'guest:vendedor','revalidate'])->group(function () {
             Route::view('/login', 'comprador.auth.login')->name('login');
             Route::post('/login', 'CompradorController@loginHandler')->name('login-handler');
 

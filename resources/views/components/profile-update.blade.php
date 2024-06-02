@@ -56,6 +56,11 @@
                 </div>
               </div>
               <div class="mb-3">
+                <label class="small mb-1" for="nickname{{ ucfirst($userType)}}">Nickname </label>
+                <input class="form-control" id="nickname{{ ucfirst($userType)}}" type="text" value="{{Auth::user()->nickname}}" name="nickname">
+                <x-error-message field="nickname" />
+              </div>
+              <div class="mb-3">
                 <label class="small mb-1" for="email{{ ucfirst($userType)}}">Email </label>
                 <input class="form-control" id="email{{ ucfirst($userType)}}" type="email" value="{{Auth::user()->email}}" name="email">
                 <x-error-message field="email" />

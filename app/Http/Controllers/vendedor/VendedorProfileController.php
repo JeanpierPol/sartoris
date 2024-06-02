@@ -34,6 +34,8 @@ class VendedorProfileController extends Controller
         $user->apellido = $request->apellido;
         $user->provincia = $request->provincia;
         $user->direccion = $request->direccion;
+        $user->email = $request->email;
+        $user->nickname = $request->nickname;
         $user->telefono = $request->telefono;
         $user->fecha_nac = $request->fecha_nac;
         $user->save();

@@ -30,6 +30,7 @@ class CompradorUpdateRequest extends FormRequest
             'direccion'=>'min:3',
             'telefono'=>['regex:/^(6|7|8|9)[0-9]{8}$/'],
             'email' => ['email', Rule::unique('compradores')->ignore($this->user()->id)],
+            'nickname'=> 'required|unique:compradores,nickname,' . $this->id,
             'fecha_nac ' => 'before:today|after:01-01-1900',
             'imagen' => 'mimes:png,jpg,jpeg',
 
