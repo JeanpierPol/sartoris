@@ -16,9 +16,10 @@
             $precio_final = 0;
             $totalProductos = 0;
         @endphp
-        <table>
+        <table border="1">
             <tr>
                 <th>Nombre</th>
+                <th>Talla</th>
                 <th>Descuento</th>
                 <th>Precio Venta</th>
                 <th>Precio con Descuento</th>
@@ -34,7 +35,8 @@
                 @endphp
 
                 <tr>
-                    <td><a href="{{route('producto', $id)}}">{{$producto['nombre']}}</a></td>
+                    <td> <a href="{{route('producto', $producto['id_producto'])}}"> {{$producto['nombre']}}</a></td>
+                    <td>{{$producto['variante']}} </td>
                     <td>
                         @if ($producto['descuento'] > 0)
                             <span class="text-danger">{{$producto['descuento']}}% <s>{{$producto['precio_venta']}}€</s></span>

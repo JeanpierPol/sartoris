@@ -22,22 +22,22 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-lg-end">
             @if (session('cart') !== null)
-            @php
-            $precio_final = 0;
-            @endphp
-
-            @foreach (session('cart') as $id => $producto)
-            @php
-            $precio_con_descuento = $producto['precio_venta'] - ($producto['precio_venta'] * ($producto['descuento'] / 100));
-            $subtotal = $precio_con_descuento * $producto['cantidad'];
-            $precio_final += $subtotal;
-            @endphp
-            <li>
+              @php
+                $precio_final = 0;
+              @endphp     
+              @foreach (session('cart') as $id => $producto )
+              @php
+                $precio_con_descuento = $producto['precio_venta'] - ($producto['precio_venta'] * ($producto['descuento'] / 100));
+                $subtotal = $precio_con_descuento * $producto['cantidad'];
+                $precio_final += $subtotal;
+              @endphp
+              <li>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="small">
                   <p class="small m-0">{{ $producto['nombre'] }}</p>
                   <div class="d-flex justify-content-between">
                     <span class="small">{{ $precio_con_descuento }}€ x {{ $producto['cantidad'] }}</span>
+                    <span class="small">Talla {{$producto['variante']}}</span>
                   </div>
                 </div>
                 <form action="{{ route('delete-cart', $id) }}" method="POST">
@@ -49,20 +49,24 @@
                 </form>
               </div>
             </li>
-            @endforeach
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              @endforeach
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li class="d-flex justify-content-between align-items-center px-3">
+                <span class="fw-bold">Total:</span>
+                <span class="fw-bold">{{ number_format($precio_final, 2) }}€</span>
+              </li>
 
-            <li class="d-flex justify-content-between align-items-center px-3">
-              <span class="fw-bold">Total:</span>
-              <span class="fw-bold">{{ number_format($precio_final, 2) }}€</span>
-            </li>
-
-            <li class="d-flex justify-content-center" style="width: 100%;">
-              <a href="{{ route('cart') }}" class="btn btn-warning btn-sm w-100 text-center">Ver el carrito</a>
+              <li class="d-flex justify-content-center" style="width: 100%;">
+                <a href="{{ route('cart') }}" class="btn btn-warning btn-sm w-100 text-center">Ver el carrito</a>
+              </li>
+            @else
+            <li class="px-3">
+              <span class="small">El carrito está vacío</span>
             </li>
             @endif
+
           </ul>
 
         <li><a class="dropdown-item" href=""></a></li>
@@ -84,7 +88,7 @@
           @endif
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end">
-        <li><a class="dropdown-item" href="{{route('comprador.home')}}">Inicio</a></li>
+          <li><a class="dropdown-item" href="{{route('comprador.home')}}">Inicio</a></li>
           <li><a class="dropdown-item" href="{{route('comprador.profile')}}">Mis datos</a></li>
           <li>
             <hr class="dropdown-divider">

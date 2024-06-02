@@ -2,61 +2,57 @@
 @section('title', 'Sartoris')
 @section('content')
 {{ Breadcrumbs::render('productos') }}
-<section class="productos ">
+<section class="productos">
     <div class="container py-5 container-comprador">
         <div class="row">
             @foreach ($productos as $producto)
-
-            @php
-                $precio_final = $producto->precio_venta - ($producto->precio_venta * ($producto->descuento / 100));
-            @endphp
             <div class="col-md-12 col-lg-4 mb-4">
-                <div class="card h-100 d-flex flex-column justify-content-between">
-
-                    <div>
-                        <div class="d-flex justify-content-between p-3">
-                        </div>
-                        @if ($producto->imagen_portada)
-                            <img src="{{$producto->imagen_portada}}" class="card-img-top w-100" alt="{{$producto->nombre}}" />
-                        @else
-                            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="card-img-top w-100" alt="{{$producto->nombre}}" />
-                        @endif
-
-                        <div class="card-body">
-                            @if ($producto->descuento>0)
-                                <div class="d-flex justify-content-between">
-                                    <p class="small">Oferta</p>
-                                    <p class="text-danger">{{$producto->descuento}}%</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="small">Precio original</p>
-                                    <p class="small text-danger"><s>{{$producto->precio_venta}}€</s></p>
-                                </div>
-                            @endif
-                            <div class="d-flex justify-content-between mb-3">
-                                <h5 class="mb-0">{{$producto->nombre}}</h5>
-                                <h5 class="text-dark mb-0">{{$precio_final}} €</h5>
+                <a class="text-decoration-none text-reset" href="{{ route('producto', $producto->id) }}">
+                    <div class="card h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between p-3">
                             </div>
-                        </div>
-                    </div>
+                            @if ($producto->imagen_portada)
+                            <img src="{{ $producto->imagen_portada }}" class="card-img-top w-100" alt="{{ $producto->nombre }}" />
+                            @else
+                            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="card-img-top w-100" alt="{{ $producto->nombre }}" />
+                            @endif
 
-                    <div class="card-footer mt-auto">
-                        <div class="d-flex justify-content-between mb-2">
-                            
-                                @if ($producto->existencias > 0)
-                                    <p class="text-muted mb-0">Existencias: <span class="fw-bold">{{$producto->existencias}}</span></p>
-                                    <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
-                                @else
-                                    <span class="text-danger">No hay productos</span>
+                            <div class="card-body text-center">
+                                <small class="fw-bold d-block">{{ $producto->nombre }} </small>
+                                <small class="fw-bold"><span id="precio-final"></span></small>
+                            </div>
+    
+                        </div>
+                </a>
+                <div class="card-footer mt-auto">
+                    <div class="d-flex justify-content-between mb-2">
+                    <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
+                        @csrf
+                        <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
+                            <option value="" selected disabled>Seleccione una talla</option>
+                            @foreach ($producto->variantes as $variante)
+                                @if ($variante->existencias > 0)
+                                    <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
                                 @endif
-                            <a type="button" class="btn btn-success" href="{{route('producto', $producto->id)}}">Ver mas</a>
-                        </div>
+                            @endforeach
+                        </select>
+                        <input type="submit" class="btn btn-comprador w-50" value="Añadir">
+                    </form>
                     </div>
-
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
+    </div>
     </div>
 </section>
+
+<script>
+    function actualizarPrecio() {
+        var select = document.getElementById("talla");
+        var precioFinal = select.options[select.selectedIndex].getAttribute("data-precio");
+        document.getElementById("precio-final").innerText = precioFinal ? precioFinal + ' €' : 'Seleccione una talla';
+    }
+</script>
 @endsection

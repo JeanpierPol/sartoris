@@ -17,7 +17,7 @@ class indexController extends Controller
             $comprador = Auth::guard('comprador')->user();
         }
 
-        $productos = Producto::all();
+        $productos = Producto::with('variantes')->get();
 
         return view('index', compact('productos', 'comprador'));
     }

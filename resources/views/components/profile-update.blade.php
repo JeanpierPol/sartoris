@@ -73,6 +73,7 @@
                 </div>
               </div>
               <input type="submit" value="Guardar cambios" class="btn btn-login">
+              <a href="javascript:history.back()" class="btn btn-login fw-bold">Cancelar</a>
             </form>
           </div>
         </div>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('imagen_portada')->nullable();
             $table->json('imagenes')->nullable();
-            $table->unsignedBigInteger('categoria_id')->nullable();
             $table->unsignedBigInteger('vendedor_id')->nullable();
             
             $table->foreign('vendedor_id')

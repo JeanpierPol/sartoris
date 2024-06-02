@@ -4,31 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
+use App\Models\Variante;
 
 class CartController extends Controller
 {
     public function addToCar(Request $request, $id)
     {
         $producto = Producto::findOrFail($id);
+        $variante_id = $request->input('talla');
+        $variante = Variante::findOrFail($variante_id);
+
         $cart = $request->session()->get('cart', []);
 
-        if ($producto->existencias > 0) {
-            if (isset($cart[$producto->id])) {
-                $cart[$producto->id]['cantidad']++;
+        if ($variante->existencias > 0) {
+            if (isset($cart[$variante->id])) {
+                $cart[$variante->id]['cantidad']++;
             } else {
-                $cart[$producto->id] = [
+                $cart[$variante->id] = [
+                    "id_producto" => $producto->id,
                     "nombre" => $producto->nombre,
-                    "cantidad" => ($request->cantidad) ? $request->cantidad : 1,
-                    "precio_venta" => $producto->precio_venta,
-                    "descuento" => $producto->descuento,
-                    "imagen_portada" => $producto->imagen_portada
+                    "imagen_portada" => $producto->imagen_portada,
+                    "precio_venta" => $variante->precio_venta,
+                    "descuento"=> $variante->descuento,
+                    "existencias"=> $variante->existencias,
+                    "variante" => $variante->talla,
+                    "cantidad" => 1
                 ];
             }
-        }else{
-            return redirect()->back()->with('error', 'producto no válido');
+        } else {
+            return redirect()->back()->with('error', 'Variante no válida o sin existencias');
         }
-
-
 
         $request->session()->put('cart', $cart);
         return redirect()->back()->with('success', 'El producto ha sido agregado');

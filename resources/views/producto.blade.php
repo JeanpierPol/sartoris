@@ -4,9 +4,8 @@
 {{ Breadcrumbs::render('producto', $producto) }}
 
 @if (isset($error))
-    {{var_dump($error)}}
+{{var_dump($error)}}
 @endif
-
 <section class="py-5">
     <div class="container container-comprador">
         <div class="row gx-5">
@@ -14,16 +13,15 @@
                 <div id="carouselExample" class="carousel slide">
                     <div class="carousel-inner">
                         @if ($producto['imagenes'])
-                            @foreach ( $producto['imagenes'] as $key => $imagen)
-                                <div class="carousel-item @if ($key == 0) active @endif">
-                                    <img src="{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
-                                </div>
-                            @endforeach
-
+                        @foreach ($producto['imagenes'] as $key => $imagen)
+                        <div class="carousel-item @if ($key == 0) active @endif">
+                            <img src="{{$imagen}}" class="d-block w-100" alt="{{$producto['nombre']}}">
+                        </div>
+                        @endforeach
                         @else
-                            <div class="carousel-item active">
-                                <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="d-block w-100" alt="{{$producto['nombre']}}x">
-                            </div>
+                        <div class="carousel-item active">
+                            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihZ0UBAp08RDRMzGL4UZHSpCTsycqFzQuKT5bFAOeAL8aK_dW3_XfG_qyCfmdeNOT6zebP3QKTqpgqEFCw2wL9SQeWJkyJFgTbY=w1920-h965" class="d-block w-100" alt="{{$producto['nombre']}}x">
+                        </div>
                         @endif
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -44,41 +42,11 @@
                     <hr>
                     <span>Vendedor: <a href="{{route('vendedor-productos', $producto->vendedor->id)}}">{{$producto->vendedor->nickname}}</a></span>
 
-                    <div class="d-flex flex-row my-3">
-                        <span class="text-muted">Existencias : 
-                            @if ($producto['existencias']>0)
-                                <span class="text-success ms-2">{{$producto['existencias']}} Disponible</span>
-                            @else
-                                <span class="text-danger ms-2">No hay</span>
-                        @endif
-                        </span>
-                    </div>
-                    @php
-                    $precio_final = $producto->precio_venta - ($producto->precio_venta * ($producto->descuento / 100));
-                    @endphp
-                    <div class="mb-3">
-                        @if ($producto['descuento'] > 0)
-                            <p class="h5 text-danger">Oferta {{$producto->descuento}}%</p>
-                            <p class="text-danger"></p>
-                            <p class="small">Precio original: <s class="text-danger">{{$producto->precio_venta}}€</s></p>
-                            <p class="h5">Precio final: {{$precio_final}} €</p>
-                        @else
-                            <p class="h5">Precio final: {{$precio_final}} €</p>
-                        @endif
-
-                    </div>
-
-                    <div>
+                    <div class="mt-4">
                         {!! $producto['descripcion'] !!}
                     </div>
 
-                    <div class="row">
-
-                    </div>
-
-                    <hr />
-
-                    <div class="row mb-4">
+                    <div class="row mt-4">
                         <div class="col-md-4 col-6">
                             <h5>Categorías:</h5>
                             <ul>
@@ -87,25 +55,26 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-md-4 col-6 mb-3">
-                            <label class="mb-2 d-block">Cantidad</label>
-                            <div class="input-group mb-3" style="width: 170px;">
-                                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon1" data-mdb-ripple-color="dark">
-                                <i class="bi bi-dash"></i>
-                                </button>
-                                <input type="text" class="form-control text-center border border-secondary" min="1" max="{{$producto['existencias']}}" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                                <button class="btn btn-white border border-secondary px-3" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                                    <i class="bi bi-plus-lg"></i>
-                                </button>
-                            </div>
-                        </div>
                     </div>
-                    @if ($producto->existencias > 0)
-                        <a type="button" class="btn btn-comprador" href="{{route('cart-add', $producto->id)}}">Agregar al carrito</a>
-                    @else
-                        <span class="text-danger">No hay productos</span>
-                    @endif
-                    
+
+                    <hr />
+
+                    <div class="mb-3">
+                        <p class="h5">Precio final: <span id="precio-final">Seleccione una talla</span></p>
+                    </div>
+
+                    <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
+                        @csrf
+                        <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
+                            <option value="" selected disabled>Seleccione una talla</option>
+                            @foreach ($producto->variantes as $variante)
+                                @if ($variante->existencias > 0)
+                                    <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <input type="submit" class="btn btn-comprador w-50" value="Añadir">
+                    </form>
                 </div>
             </main>
         </div>
@@ -122,7 +91,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Productos similares</h5>
-                            @foreach ( $productosSimilares as $producto )
+                            @foreach ($productosSimilares as $producto)
                             <div class="d-flex mb-3">
                                 <a href="{{route('producto', $producto->id)}}" class="me-3">
                                     @if ($producto->imagen_portada)
@@ -146,4 +115,13 @@
         </div>
     </div>
 </section>
+
+<script>
+    function actualizarPrecio() {
+        var select = document.getElementById("talla");
+        var precioFinal = select.options[select.selectedIndex].getAttribute("data-precio");
+        document.getElementById("precio-final").innerText = precioFinal ? precioFinal + ' €' : 'Seleccione una talla';
+    }
+</script>
+
 @endsection

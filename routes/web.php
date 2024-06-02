@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/', 'indexController@index')->name('productos'); 
-    Route::get('/add/{id}', 'CartController@addToCar')->name('cart-add');
+    Route::post('/add/{id}', 'CartController@addToCar')->name('cart-add');
     Route::get('/cart', 'CartController@productosCart')->name('cart');
     Route::delete('/cart/delete/{id}', 'CartController@destroy')->name('delete-cart');
     Route::post('/cart/clear', 'CartController@clearCart')->name('clear-cart');
