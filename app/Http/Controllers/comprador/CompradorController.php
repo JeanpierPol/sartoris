@@ -15,6 +15,14 @@ class CompradorController extends Controller
     public function loginHandler(CompradorLoginRequest $request)
     {
         $credentials = $request->getCredentials();
+        $comprador = Comprador::where('email', $credentials['email'])->first();
+       
+        if (is_null($comprador->password)) {
+            return redirect()->route('comprador.login', ['email' => $credentials['email']])->withErrors([
+                'login' => 'Estas credenciales no coinciden con nuestros registros.'
+            ]);
+        }
+    
 
         if (Auth::guard('comprador')->attempt($credentials)) {
             return redirect()->back()->with('succes', 'login');

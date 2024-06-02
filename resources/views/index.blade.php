@@ -37,7 +37,7 @@
                                 @endif
                             @endforeach
                         </select>
-                        <input type="submit" class="btn btn-comprador w-50" value="Añadir">
+                        <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled value="Añadir">
                     </form>
                     </div>
                 </div>
@@ -50,6 +50,7 @@
 
 <script>
     function actualizarPrecio() {
+        document.querySelector('#cartBtn').disabled = false;
         var select = document.getElementById("talla");
         var precioFinal = select.options[select.selectedIndex].getAttribute("data-precio");
         document.getElementById("precio-final").innerText = precioFinal ? precioFinal + ' €' : 'Seleccione una talla';
