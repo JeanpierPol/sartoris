@@ -38,7 +38,7 @@ class NotificacionPagoMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.pago',
+            view: 'emails.pago',
         );
     }
 
