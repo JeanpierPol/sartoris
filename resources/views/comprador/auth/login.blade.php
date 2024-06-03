@@ -1,8 +1,7 @@
 @extends('layout.app-master')
 @section('title', 'Login Comprador')
 @section('content')
-<x-notification />
 {{ Breadcrumbs::render('comprador_login') }}
-
+<x-notification />
 <x-login-form user-type="comprador" action-route="comprador.login-handler" register-route="comprador.register" googleRoute="comprador.google-redirect" />
 @endsection

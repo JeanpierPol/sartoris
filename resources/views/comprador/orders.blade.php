@@ -1,6 +1,7 @@
 @extends('layout.app-master')
 @section('title', 'Pedidos')
 @section('content')
+{{ Breadcrumbs::render('comprador_orders') }}
 <div class="content-wrapper mt-4">
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4">

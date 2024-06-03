@@ -2,7 +2,7 @@
 @section('title', 'Producto')
 @section('content')
 <x-notification />
-{{ Breadcrumbs::render('producto', $producto) }}
+{{ Breadcrumbs::render('producto', $producto->id) }}
 <section class="py-5">
     <div class="container container-comprador">
         <div class="row gx-5">

@@ -1,7 +1,7 @@
 @extends('layout.app-master')
 @section('title', 'Métodos de pago')
 @section('content')
-
+{{ Breadcrumbs::render('comprador_payment') }}
 <div class="ms-4 mt-4">
     <div class="card border-0  p-4 text-white">
         <div class="top_div text-white d-flex justify-content-between align-items-center">
