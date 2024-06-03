@@ -21,11 +21,12 @@
                             <input type="password" class="form-control" id="contrasena{{ ucfirst($userType) }}" name="password">
                             <x-error-message field="password" />
                         </div>
+                        {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
                         <div class="d-grid">
                             <button class="btn btn-login fw-bold" type="submit">Iniciar sesión</button>
                         </div>
                         <div class="form-group">
-                        {!! NoCaptcha::display(), NoCaptcha::renderJs() !!}
+                        
                         <x-error-message field="g-recaptcha-response" />
                         </div>
                         <div class="mb-3 mt-3">

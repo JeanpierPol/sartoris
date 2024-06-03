@@ -23,8 +23,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/buscar-productos', 'indexController@search')->name('buscar-productos');
     Route::get('/producto-vendedor/{id}', 'indexController@searchVendedor')->name('vendedor-productos');
 
-    Route::view('/rol', 'rol')->name('rol')->middleware('guest:comprador');
-    Route::view('/rol', 'rol')->name('rol')->middleware('guest:vendedor');
+    Route::view('/rol', 'rol')->name('rol')->middleware(['guest:comprador', 'guest:vendedor']);
 
     Route::middleware(['auth:comprador', 'revalidate'])->group(function () {
         Route::post('paypal/paymet', 'PayPalController@payment')->name('paypal');
