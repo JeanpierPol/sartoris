@@ -20,7 +20,7 @@
 
                             <div class="card-body text-center">
                                 <small class="fw-bold d-block">{{ $producto->nombre }} </small>
-                                <small class="fw-bold"><span id="precio-final"></span></small>
+                                <small class="fw-bold"><span class="precio-final"></span></small>
                             </div>
     
                         </div>
@@ -29,7 +29,7 @@
                     <div class="d-flex justify-content-between mb-2">
                     <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
                         @csrf
-                        <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
+                        <select name="talla" class="btn w-50 me-2 talla-select" onchange="actualizarPrecio(this)">
                             <option value="" selected disabled>Seleccione una talla</option>
                             @foreach ($producto->variantes as $variante)
                                 @if ($variante->existencias > 0)
@@ -37,7 +37,7 @@
                                 @endif
                             @endforeach
                         </select>
-                        <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled value="Añadir">
+                        <input type="submit" class="btn btn-comprador w-50 cartBtn" disabled value="Añadir">
                     </form>
                     </div>
                 </div>
@@ -49,11 +49,14 @@
 </section>
 
 <script>
-    function actualizarPrecio() {
-        document.querySelector('#cartBtn').disabled = false;
-        var select = document.getElementById("talla");
-        var precioFinal = select.options[select.selectedIndex].getAttribute("data-precio");
-        document.getElementById("precio-final").innerText = precioFinal ? precioFinal + ' €' : 'Seleccione una talla';
+    function actualizarPrecio(selectElement) {
+        let card = selectElement.closest('.card');
+        let submitButton = card.querySelector('.cartBtn');
+        let precioFinalSpan = card.querySelector('.precio-final');
+        
+        submitButton.disabled = false;
+        let precioFinal = selectElement.options[selectElement.selectedIndex].getAttribute("data-precio");
+        precioFinalSpan.innerText = precioFinal ? precioFinal + ' €' : 'Seleccione una talla';
     }
 </script>
 @endsection
