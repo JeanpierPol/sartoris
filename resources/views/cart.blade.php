@@ -15,6 +15,8 @@
                                 <hr>
 
                                 <div class="d-flex justify-content-between align-items-center mb-4">
+          
+
                                     <div>
                                         <p class="mb-1">Carrito de compra</p>
                                     </div>
@@ -76,7 +78,13 @@
                                 @endforeach
 
                             </div>
+                            
                             <div class="col-lg-5">
+                                @if (Auth::guard('comprador')->check())
+                                    <div>
+                                        <p class="mb-1">Tiempo estimado de llegada</p>
+                                    </div>
+                                @endif
                                 <div class="mb-4">
                                     <h5>Total a pagar: {{ $precio_final }}€</h5>
                                 </div>
@@ -158,4 +166,13 @@
         </div>
     </div>
 </section>
+<script>
+    async function logMovies() {
+    const response = await fetch("http://example.com/movies.json");
+    const movies = await response.json();
+    console.log("movies");
+}
+logMovies();
+
+</script>
 @endsection
