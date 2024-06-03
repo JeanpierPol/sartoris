@@ -32,27 +32,34 @@ class GoogleController extends Controller
                 ['email' => $googleUser->getEmail()],
                 [
                     'nombre' => $googleUser->getName(),
-                    'nickname' => $googleUser->getNickname(),
                     'google_id' => $googleUser->getId(),
                     'imagen' => $googleUser->getAvatar(),
                 ]
             );
 
             Auth::guard('comprador')->login($user);
-            return redirect()->intended('/comprador/home');
+            if( ($user->nickname == null) || ($user->provincia == null) || ($user->direccion  == null)){
+                return redirect()->intended('/comprador/profile')->with('success', 'Por favor termina de rellar tus datos');
+            }else{
+                return redirect()->intended('/comprador/home')->with('success', 'login exitoso');
+            }
+            
         } elseif ($userType == 'vendedor') {
             $user = Vendedor::updateOrCreate(
                 ['email' => $googleUser->getEmail()],
                 [
                     'nombre' => $googleUser->getName(),
-                    'nickname' => $googleUser->getNickname(),
                     'google_id' => $googleUser->getId(),
                     'imagen' => $googleUser->getAvatar(),
                 ]
             );
 
             Auth::guard('vendedor')->login($user);
-            return redirect()->intended('/vendedor/home');
+            if( ($user->nickname == null) || ($user->provincia == null) || ($user->direccion  == null)){
+                return redirect()->intended('/vendedor/profile')->with('success', 'Por favor termina de rellar tus datos');
+            }else{
+                return redirect()->intended('/vendedor/home')->with('success', 'login exitoso');
+            }
         }
 
         return redirect('/login');
