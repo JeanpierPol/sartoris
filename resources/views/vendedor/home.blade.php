@@ -1,6 +1,7 @@
 @extends('layout.app-master')
 @section('title', 'Inicio vendedor')
 @section('content')
+<x-notification />
 <div class="container mt-4 home-vendedor">
     <div class="row">
         <div class="col-md-4 col-xl-4">

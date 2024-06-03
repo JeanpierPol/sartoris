@@ -1,11 +1,8 @@
 @extends('layout.app-master')
 @section('title', 'Producto')
 @section('content')
+<x-notification />
 {{ Breadcrumbs::render('producto', $producto) }}
-
-@if (isset($error))
-{{var_dump($error)}}
-@endif
 <section class="py-5">
     <div class="container container-comprador">
         <div class="row gx-5">

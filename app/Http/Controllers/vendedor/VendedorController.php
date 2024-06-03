@@ -49,7 +49,7 @@ class VendedorController extends Controller
             'fecha_nac' => $request->fecha_nac,
             'password' => $request->password,
         ]);
-        return redirect('/vendedor/login')->with('sucess', 'Cuenta creada correctamente');
+        return redirect('/vendedor/login')->with('success', 'Cuenta creada correctamente');
     }
 
     public function showSales(){

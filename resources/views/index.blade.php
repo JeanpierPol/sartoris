@@ -1,6 +1,7 @@
 @extends('layout.app-master')
 @section('title', 'Sartoris')
 @section('content')
+<x-notification />
 {{ Breadcrumbs::render('productos') }}
 <section class="productos">
     <div class="container py-5 container-comprador">

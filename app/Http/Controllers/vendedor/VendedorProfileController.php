@@ -40,6 +40,6 @@ class VendedorProfileController extends Controller
         $user->fecha_nac = $request->fecha_nac;
         $user->save();
 
-        return redirect('vendedor/profile');
+        return redirect('vendedor/profile')->with('success', 'Cuenta actualizada');
     }
 }

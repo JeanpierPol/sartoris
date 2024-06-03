@@ -51,7 +51,7 @@ class CompradorController extends Controller
             'fecha_nac' => $request->fecha_nac,
             'password' => $request->password,
         ]);
-        return redirect('/comprador/login')->with('sucess', 'Cuenta creada correctamente');
+        return redirect('/comprador/login')->with('success', 'Cuenta creada correctamente');
     }
 
     public function orders(){

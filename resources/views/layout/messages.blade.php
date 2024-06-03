@@ -9,7 +9,7 @@
     
 @endif
 
-@if (Session::get('sucess', false))
+@if (Session::get('success', false))
 
     
 @endif

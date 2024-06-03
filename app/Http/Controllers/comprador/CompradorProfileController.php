@@ -41,6 +41,7 @@ class CompradorProfileController extends Controller
         $user->fecha_nac = $request->fecha_nac;
         $user->save();
 
-        return redirect('comprador/profile');
+        return redirect('comprador/profile')->with('success', 'Cuenta actualizada');;
+        
     }
 }

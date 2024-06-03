@@ -2,6 +2,7 @@
 @section('title', 'Sartoris')
 @section('content')
 {{ Breadcrumbs::render('productos') }}
+<x-notification />
 <section class="productos">
     <div class="container py-5 container-comprador">
         <div class="row">

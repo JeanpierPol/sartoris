@@ -62,7 +62,7 @@ class PayPalController extends Controller
 
     public function cancel()
     {
-        return "pago cancelado";
+        return redirect()->route('cart')->with('error', 'Error al procesar la transacción.');
     }
 }
 
