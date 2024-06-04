@@ -58,8 +58,9 @@ class CompradorController extends Controller
         $comprador = Auth::guard('comprador')->user();
 
         $transacciones = DetalleTransaccion::with(['producto.vendedor'])
-                        ->where('comprador_id', $comprador->id)
-                        ->get();
+        ->where('comprador_id', $comprador->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
         
 
         return view('comprador.orders', compact('transacciones'));

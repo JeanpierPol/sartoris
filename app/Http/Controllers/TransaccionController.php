@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\DetalleTransaccion;
 use App\Models\Producto;
 use App\Models\Variante;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -37,7 +38,7 @@ class TransaccionController extends Controller
                        
                         $cantidad = $productoData['cantidad'];
                            
-                        $precioUnitario = $variante->precio_venta;
+                        $precioUnitario = $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100));
                         $subtotal = $cantidad * $precioUnitario;
 
                         $detalleTransaccion = new DetalleTransaccion([
@@ -46,7 +47,7 @@ class TransaccionController extends Controller
                             'cantidad' => $cantidad,
                             'precio_unitario' => $precioUnitario,
                             'subtotal' => $subtotal,
-                            'fecha' => now(),
+                            'fecha' => Carbon::now(),
                         ]);
                         $detalleTransaccion->save();
 

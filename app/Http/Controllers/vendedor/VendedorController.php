@@ -60,8 +60,8 @@ class VendedorController extends Controller
             ->whereHas('producto', function ($query) use ($vendedorId) {
                 $query->where('vendedor_id', $vendedorId);
             })
+            ->orderBy('created_at', 'desc')
             ->get();
-
         return view('vendedor.sales', compact('transacciones'));
     }
 }
