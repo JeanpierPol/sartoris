@@ -52,15 +52,16 @@ class CartController extends Controller
             $cart = $request->session()->get('cart', []);
             $key = env('DISTANCEMATRIX_API');
             foreach ($cart as &$product) {
-                $origin = $product['origen'];  
+                $origin = $product['origen'];
 
                 $url = "https://api.distancematrix.ai/maps/api/distancematrix/json?origins=$origin&destinations=$destino&key=$key";
                 $response = Http::get($url);
-                if ($response->ok()) {
+                if (($response->ok()) && !($response->json()['rows'][0]['elements'][0]['status'] === "ZERO_RESULTS")) {
                     $duration = $response->json()['rows'][0]['elements'][0]['duration']['text'];
                 } else {
-                    $duration = 'desconocido'; 
+                    $duration = 'desconocido';
                 }
+
                 $product['duracion'] = $duration;
             }
             $request->session()->put('cart', $cart);
@@ -81,4 +82,3 @@ class CartController extends Controller
         return redirect()->back()->with('error', 'Producto no encontrado en el carrito.');
     }
 }
-
