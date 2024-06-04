@@ -2,8 +2,7 @@
 
     <div class="container py-5">
       <div class="row">
-        <div class="col">
-        </div>
+        <div class="col"></div>
       </div>
 
       <div class="row">
@@ -13,7 +12,6 @@
             <div class="card-body text-center">
               @if (Auth::user()->hasProfilePicture())
               <img src="{{ Auth::user()->imagen }}" class="rounded-circle img-fluid" style="width: 150px;" />
-             
               @else
               <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYVKuxiNrVgjma-ISqJ1CRZHQZ-Z4Jk5BCxJ6ze627neDniNHfyaO6qcSS6oiOb9oNKppBOJkzBbUrtSZ_5APBo_ALXPvzMH24=w1920-h965-rw-v1" class="rounded-circle img-fluid" style="width: 150px;" />
               @endif
@@ -25,8 +23,8 @@
             </div>
           </div>
         </div>
-
       </div>
+
       <div class="col-xl-9 mx-auto">
         <div class="card mb-4">
           <div class="card-header">Detalles de la cuenta</div>
@@ -90,24 +88,28 @@
 </section>
 
 <script>
-        let comunidades = null;
+let comunidades = null;
 
-        async function provincias() {
-            const response = await fetch("https://raw.githubusercontent.com/frontid/ComunidadesProvinciasPoblaciones/master/ccaa.json");
-            comunidades = await response.json();
+async function provincias() {
+    const response = await fetch("https://raw.githubusercontent.com/frontid/ComunidadesProvinciasPoblaciones/master/ccaa.json");
+    comunidades = await response.json();
 
-            let inputProvincia = document.querySelector('#provincia');
+    let inputProvincia = document.querySelector('#provincia');
 
-            inputProvincia.innerHTML = '';
+    inputProvincia.innerHTML = '';
 
-            comunidades.forEach(comunidad => {
-                console.log(comunidad)
-                let option = document.createElement('option');
-                option.value = comunidad.label;
-                option.textContent = comunidad.label;
-                inputProvincia.appendChild(option);
-            });
-        }
+    comunidades.forEach(comunidad => {
+        let option = document.createElement('option');
+        option.value = comunidad.label;
+        option.textContent = comunidad.label;
+        inputProvincia.appendChild(option);
+    });
 
-    window.onload = provincias;
-    </script>
+    let storedProvince = "{{ Auth::user()->provincia }}";
+    if (storedProvince) {
+        inputProvincia.value = storedProvince;
+    }
+}
+
+window.onload = provincias;
+</script>
