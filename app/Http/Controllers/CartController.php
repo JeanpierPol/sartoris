@@ -56,7 +56,7 @@ class CartController extends Controller
 
                 $url = "https://api.distancematrix.ai/maps/api/distancematrix/json?origins=$origin&destinations=$destino&key=$key";
                 $response = Http::get($url);
-                dd($response->json());
+                dd($url);
                 if (($response->ok()) && !($response->json()['rows'][0]['elements'][0]['status'] === "ZERO_RESULTS")) {
                     $duration = $response->json()['rows'][0]['elements'][0]['duration']['text'];
                 } else {
