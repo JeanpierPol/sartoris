@@ -88,7 +88,7 @@
                                             @endforeach
                                     </div>
                                 @endif
-                                <div class="mb-4">
+                                <div class="mb-4 mt-4">
                                     <h5>Total a pagar: {{ $precio_final }}€</h5>
                                 </div>
 
