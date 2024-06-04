@@ -25,6 +25,7 @@
                 <th>Precio con Descuento</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
+                <th>Tiempo estimado</th>
             </tr>
             @foreach ($mailData as $id => $producto)
                 @php
@@ -48,6 +49,7 @@
                     <td>{{$precio_con_descuento}}€</td>
                     <td>{{$producto['cantidad']}}</td>
                     <td>{{$subtotal}}€</td>
+                    <td>{{$producto['duracion']}}</td>
                 </tr>
             @endforeach
         </table>
