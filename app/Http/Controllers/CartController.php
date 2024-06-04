@@ -50,13 +50,12 @@ class CartController extends Controller
             $comprador = Auth::guard('comprador')->user();
             $destino = $comprador->provincia . " " . $comprador->direccion;
             $cart = $request->session()->get('cart', []);
-            $key = env('DISTANCEMATRIX_API');
+            $key = config('distance.distance');
             foreach ($cart as &$product) {
                 $origin = $product['origen'];
 
                 $url = "https://api.distancematrix.ai/maps/api/distancematrix/json?origins=$origin&destinations=$destino&key=$key";
                 $response = Http::get($url);
-                dd($url);
                 if (($response->ok()) && !($response->json()['rows'][0]['elements'][0]['status'] === "ZERO_RESULTS")) {
                     $duration = $response->json()['rows'][0]['elements'][0]['duration']['text'];
                 } else {
