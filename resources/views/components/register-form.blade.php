@@ -24,8 +24,11 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="provincia{{ ucfirst($userType) }}">provincia</label>
-                                <input type="text" class="form-control" id="provincia{{ ucfirst($userType) }}" name="provincia" value="{{old('provincia')}}">
+                                <label for="provincia{{ ucfirst($userType) }}">Provincia</label>                                
+                                <select name="provincia" id="provincia" class="form-control form-select" aria-label=".form-select-lg">
+                                    <optgroup>
+                                    </optgroup>
+                                </select>
                                 <x-error-message field="provincia" />
                             </div>
                             <div class="form-group col-md-6">
@@ -47,8 +50,8 @@
                             <div class="form-group">
                                 <label for="fecha_nac">Fecha de nacimiento</label>
                                 @php
-                                    $maxDate = date('Y-m-d');
-                                    $minDate = date('Y-m-d', strtotime('1900-01-01'));
+                                $maxDate = date('Y-m-d');
+                                $minDate = date('Y-m-d', strtotime('1900-01-01'));
                                 @endphp
 
                                 <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" max="{{ $maxDate }}" min="{{ $minDate }}" value="{{ old('fecha_nac') }}">
@@ -85,3 +88,27 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        let comunidades = null;
+
+        async function provincias() {
+            const response = await fetch("https://raw.githubusercontent.com/frontid/ComunidadesProvinciasPoblaciones/master/ccaa.json");
+            comunidades = await response.json();
+
+            let inputProvincia = document.querySelector('#provincia');
+
+            inputProvincia.innerHTML = '';
+
+            comunidades.forEach(comunidad => {
+                console.log(comunidad)
+                let option = document.createElement('option');
+                option.value = comunidad.label;
+                option.textContent = comunidad.label;
+                inputProvincia.appendChild(option);
+            });
+        }
+
+    window.onload = provincias;
+    </script>

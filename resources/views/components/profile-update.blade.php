@@ -46,7 +46,10 @@
               <div class="row gx-3 mb-3">
                 <div class="col-md-6">
                   <label class="small mb-1" for="provincia{{ ucfirst($userType)}}">Provincia</label>
-                  <input class="form-control" id="provincia{{ ucfirst($userType)}}" type="text" value="{{Auth::user()->provincia}}" name="provincia">
+                  <select name="provincia" id="provincia" class="form-control form-select" aria-label=".form-select-lg">
+                      <optgroup>
+                      </optgroup>
+                  </select>
                   <x-error-message field="provincia" />
                 </div>
                 <div class="col-md-6">
@@ -85,3 +88,26 @@
       </div>
     </div>
 </section>
+
+<script>
+        let comunidades = null;
+
+        async function provincias() {
+            const response = await fetch("https://raw.githubusercontent.com/frontid/ComunidadesProvinciasPoblaciones/master/ccaa.json");
+            comunidades = await response.json();
+
+            let inputProvincia = document.querySelector('#provincia');
+
+            inputProvincia.innerHTML = '';
+
+            comunidades.forEach(comunidad => {
+                console.log(comunidad)
+                let option = document.createElement('option');
+                option.value = comunidad.label;
+                option.textContent = comunidad.label;
+                inputProvincia.appendChild(option);
+            });
+        }
+
+    window.onload = provincias;
+    </script>
