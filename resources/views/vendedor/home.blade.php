@@ -1,8 +1,8 @@
 @extends('layout.app-master')
 @section('title', 'Inicio vendedor')
 @section('content')
-{{ Breadcrumbs::render('vendedor_home') }}
 <x-notification />
+{{ Breadcrumbs::render('vendedor_home') }}
 <div class="container mt-4 home-vendedor">
     <div class="row">
         <div class="col-md-4 col-xl-4">

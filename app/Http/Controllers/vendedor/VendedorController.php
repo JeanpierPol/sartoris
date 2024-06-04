@@ -52,12 +52,15 @@ class VendedorController extends Controller
         return redirect('/vendedor/login')->with('success', 'Cuenta creada correctamente');
     }
 
-    public function showSales(){
-        $vendedor = auth()->id();
-        
+    public function showSales()
+    {
+        $vendedorId = Auth::id();
+
         $transacciones = DetalleTransaccion::with('producto')
-        ->where('comprador_id', $vendedor)
-        ->get();
+            ->whereHas('producto', function ($query) use ($vendedorId) {
+                $query->where('vendedor_id', $vendedorId);
+            })
+            ->get();
 
         return view('vendedor.sales', compact('transacciones'));
     }

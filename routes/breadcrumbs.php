@@ -115,6 +115,12 @@ Breadcrumbs::for('vendedor_edit_producto', function (BreadcrumbTrail $trail, $id
     $trail->push($producto->nombre, route('vendedor.producto.edit-producto', ['id' => $producto->id]));
 });
 
+Breadcrumbs::for('vendedor_sales', function (BreadcrumbTrail $trail) {
+    $trail->parent('vendedor_home');
+    $trail->push('lista de ventas', route('vendedor.producto.all-productos'));
+});
+
+
 
 // // Home > Blog
 // Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
