@@ -41,7 +41,7 @@ class indexController extends Controller
     {
         $producto = Producto::with('categorias')->findOrFail($request->id);
 
-        $productosSimilares = Producto::whereHas('categorias', function ($query) use ($producto) {
+        $productosSimilares = Producto::with('variantes')->whereHas('categorias', function ($query) use ($producto) {
             $categoriaP = $producto->categorias->pluck('id');
             $query->where('categoria_id', $categoriaP->all());
         })->where('id', '!=', $producto->id)->get();

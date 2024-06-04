@@ -65,12 +65,12 @@
                         <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
                             <option value="" selected disabled>Seleccione una talla</option>
                             @foreach ($producto->variantes as $variante)
-                                @if ($variante->existencias > 0)
-                                    <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
-                                @endif
+                            @if ($variante->existencias > 0)
+                            <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
+                            @endif
                             @endforeach
                         </select>
-                        <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled    value="Añadir">
+                        <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled value="Añadir">
                     </form>
                 </div>
             </main>
@@ -101,7 +101,19 @@
                                     <a href="{{route('producto', $producto->id)}}" class="nav-link mb-1">
                                         {{$producto->nombre}}
                                     </a>
-                                    <strong class="text-dark">{{ $producto->precio_venta - ($producto->precio_venta * ($producto->descuento / 100))}}€</strong>
+                                    @php
+                                        $minPrecioFinal = null;
+
+                                        foreach ($producto->variantes as $variante) {
+                                        $precioFinal = $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100));
+
+                                        if ($minPrecioFinal === null || $precioFinal < $minPrecioFinal) { $minPrecioFinal=$precioFinal; } } 
+                                    
+                                    @endphp 
+                                    
+                                    <strong class="text-dark">{{ $minPrecioFinal }} €</strong>
+
+
                                 </div>
                             </div>
                             @endforeach
