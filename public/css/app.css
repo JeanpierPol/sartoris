@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 @import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import url("https://fonts.cdnfonts.com/css/lucien-schoenschriftv-cat");
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -11989,6 +11990,12 @@ textarea.form-control-lg {
   background-color: #DDA15E;
 }
 
+a.navbar-brand {
+  font-family: "Lucien Schoenschriftv CAT", sans-serif;
+  color: #fff;
+  font-size: 30px;
+}
+
 .navbar-vendedor {
   --bs-link-color:#f70a0a;
   --bs-link-hover-color:#f70a0a;
@@ -12044,6 +12051,13 @@ textarea.form-control-lg {
 .container-vendedor img {
   max-width: 50vh;
   max-height: 50vh;
+}
+.container-vendedor .vendedor-scroll {
+  overflow-y: auto;
+  height: 584px;
+  scrollbar-color: #DDA15E transparent;
+  scrollbar-width: auto;
+  scrollbar-gutter: stable;
 }
 
 .btn-vendedor {

@@ -10,6 +10,12 @@
     <script type="text/javascript" src="{{ asset('assets/richtexteditor/rte.js')}}"></script>  
     <script type="text/javascript" src="{{asset ('assets/richtexteditor/plugins/all_plugins.js')}}"></script>
     <script type="text/javascript" src="{{asset ('assets//richtexteditor/lang/rte-lang-es.js')}}"></script>
+    @if (Auth::guard('vendedor')->check())
+        <link rel="icon" href="{{ asset('faviconV.ico') }}">
+    @else
+        <link rel="icon" href="{{ asset('faviconC.ico') }}">
+    @endif
+    
 
 </head>
 
