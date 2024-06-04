@@ -50,6 +50,7 @@ jobs:
           APP_KEY: ${{ secrets.APP_KEY }}
           PAYPAL_SANDBOX_CLIENT_ID: ${{ secrets.PAYPAL_SANDBOX_CLIENT_ID }}
           PAYPAL_SANDBOX_CLIENT_SECRET: ${{ secrets.PAYPAL_SANDBOX_CLIENT_SECRET }}
+          DISTANCEMATRIX_API: ${{ secrets.DISTANCEMATRIX_API }}
         run: composer install --optimize-autoloader --no-dev
 
       - name: Build PHP assets
@@ -57,6 +58,7 @@ jobs:
           APP_KEY: ${{ secrets.APP_KEY }}
           PAYPAL_SANDBOX_CLIENT_ID: ${{ secrets.PAYPAL_SANDBOX_CLIENT_ID }}
           PAYPAL_SANDBOX_CLIENT_SECRET: ${{ secrets.PAYPAL_SANDBOX_CLIENT_SECRET }}
+          DISTANCEMATRIX_API: ${{ secrets.DISTANCEMATRIX_API }}
         run: |
           php artisan key:generate --force -n
           php artisan config:clear
