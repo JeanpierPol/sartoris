@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
+/**
+ * Rutas comprador
+ */
+
 Route::prefix('comprador')->name('comprador.')->group(function () {
 
     Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirectComprador')->name('google-redirect');

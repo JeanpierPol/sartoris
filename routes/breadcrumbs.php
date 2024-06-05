@@ -4,6 +4,7 @@
 // this import. This is nice for IDE syntax and refactoring.
 
 use App\Models\Producto;
+use App\Models\Vendedor;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
 // This import is also not required, and you could replace `BreadcrumbTrail $trail`
@@ -29,6 +30,12 @@ Breadcrumbs::for('cart', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('buscar-productos', function (BreadcrumbTrail $trail) {
     $trail->parent('productos');
     $trail->push('Buscar Productos', route('buscar-productos'));
+});
+
+Breadcrumbs::for('vendedor-productos', function (BreadcrumbTrail $trail, $id) {
+    $vendedor = Vendedor::findOrFail($id);
+    $trail->parent('productos');
+    $trail->push($vendedor->nickname, route('vendedor.producto.edit-producto', ['id' => $vendedor->id]));
 });
 
 /*

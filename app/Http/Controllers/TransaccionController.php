@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Mail;
 
 class TransaccionController extends Controller
 {
+    /**
+     * Método para guardar en la bases de datos la transacción
+     */
     public function success()
     {
         $productos = session('cart');
@@ -61,12 +64,15 @@ class TransaccionController extends Controller
             }
 
             DB::commit();
-            
+            //envia el email 
             Mail::to($comprador->email)->send(new NotificacionPagoMail($productos));
             session()->forget('cart');
 
             return redirect()->route('comprador.home')->with('success', 'Transacción completada exitosamente.');
         } catch (\Exception $e) {
+            /**
+             * En caso de que de error revierte la transacción
+             */
             DB::rollBack();
             return redirect()->route('cart')->with('error', 'Error al procesar la transacción.');
         }

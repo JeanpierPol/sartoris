@@ -2,7 +2,9 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
-
+/**
+ * Rutas vendedor
+ */
 Route::prefix('vendedor')->name('vendedor.')->group(function () {
     Route::get('/google-auth/redirect', 'App\Http\Controllers\GoogleController@redirectVendedor')->name('google-redirect');
 

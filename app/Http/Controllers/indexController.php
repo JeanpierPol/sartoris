@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Comprador;
 use App\Models\Producto;
+use App\Models\Vendedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class indexController extends Controller
 {
+    /**
+     * Página de inicio
+     */
     public function index(Request $request)
     {
 
@@ -21,7 +25,9 @@ class indexController extends Controller
 
         return view('index', compact('productos', 'comprador'));
     }
-
+    /**
+     * Buscador
+     */
 
     public function search(Request $request)
     {
@@ -36,6 +42,9 @@ class indexController extends Controller
         return view('search', compact('productos'));
     }
 
+    /**
+     * Página un producto en especifico 
+     */
 
     public function producto(Request $request)
     {
@@ -49,13 +58,17 @@ class indexController extends Controller
         return view('producto', compact('producto', 'productosSimilares'));
     }
 
+    /**
+     * Página que muestra todos los productos asociados a un comprador 
+     */
+
     public function searchVendedor(Request $request)
     {
-       
+        $vendedor = Vendedor::findOrfail($request->id);
         $productos = Producto::where('vendedor_id', $request->id)
             ->with('vendedor')
             ->get();
-
-        return view('vendedor-search', compact('productos'));
+        
+        return view('vendedor-search', compact('productos', 'vendedor'));
     }
 }

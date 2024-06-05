@@ -13,11 +13,18 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    /**
+     * Vista para agregar producto
+     */
     public function addProducto(Request $request)
     {
         $categorias = Categoria::orderBy('nombre', 'asc')->get();
         return view('vendedor.add-producto', compact('categorias'));
     }
+
+    /**
+     * Metodo para guardar producto
+     */
 
     public function createProducto(VendedorProductoCreateRequest $request)
     {
@@ -26,6 +33,10 @@ class ProductoController extends Controller
         $producto_imagen_portada = null;
         $producto_imagenes = [];
 
+
+        /*
+            Guarda las imágenes en un array
+        */
         if ($request->hasFile('imagen')) {
             $path = "/img/productos/$id_vendedor/" . date("YmdHis");
             foreach ($request->file('imagen') as $image) {
@@ -49,6 +60,10 @@ class ProductoController extends Controller
             $producto->categorias()->sync($categorias);
         }
 
+        /*
+        Asigna la talla recorriendo el input de las tallas
+        */
+
         if ($request->has('talla')) {
             foreach ($request->input('talla') as $index => $talla) {
                 $variante = new Variante();
@@ -63,7 +78,9 @@ class ProductoController extends Controller
 
         return redirect()->route('vendedor.producto.all-productos')->with('success', 'Producto creado exitosamente.');
     }
-
+    /**
+     * Vista para todos los productos asociados al comprador
+     */
     public function allProductos()
     {
         $vendedor_id = auth()->id();
@@ -71,7 +88,9 @@ class ProductoController extends Controller
         $productos = $vendedor->productos()->with('variantes')->get();
         return view('vendedor.productos', compact('productos'));
     }
-    
+    /**
+     * Vista para editar producto
+     */
 
     public function editProducto(Request $request)
     {
@@ -79,6 +98,9 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         return view('vendedor.edit-producto', compact('producto', 'categorias'));
     }
+    /**
+     * Función para actualizar producto
+     */
 
     public function updateProducto(VendedorProductoUpdateRequest $request)
     {
@@ -108,13 +130,20 @@ class ProductoController extends Controller
         }
 
         $producto->save();
-
+    
+        // Verifica si la solicitud contiene categorias
         if ($request->has('categorias')) {
             $categorias = $request->input('categorias');
+            /*
+            Sincroniza las categorías del producto con las categorías proporcionadas en la solicitud.
+            El método sync actualiza la tabla intermedia, añadiendo nuevas relaciones y eliminando las que no están en el array.
+            */
             $producto->categorias()->sync($categorias);
         } else {
+            // Si no se proporcionan categorías, el método detach elimina todas las relaciones de categorías del producto.
             $producto->categorias()->detach();
         }
+
 
         $variantesActuales = $producto->variantes()->pluck('id')->toArray();
         $variantesSolicitadas = collect($request->input('talla'))->map(function ($talla, $index) use ($request) {

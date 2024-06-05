@@ -53,25 +53,25 @@
                             </ul>
                         </div>
                     </div>
+                    @if (!Auth::guard('vendedor')->check())
+                        <hr />
+                        <div class="mb-3">
+                            <p class="h5">Precio final: <span id="precio-final">Seleccione una talla</span></p>
+                        </div>
 
-                    <hr />
-
-                    <div class="mb-3">
-                        <p class="h5">Precio final: <span id="precio-final">Seleccione una talla</span></p>
-                    </div>
-
-                    <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
-                        @csrf
-                        <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
-                            <option value="" selected disabled>Seleccione una talla</option>
-                            @foreach ($producto->variantes as $variante)
-                            @if ($variante->existencias > 0)
-                            <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled value="Añadir">
-                    </form>
+                        <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
+                            @csrf
+                            <select name="talla" id="talla" class="btn w-50 me-2" onchange="actualizarPrecio()">
+                                <option value="" selected disabled>Seleccione una talla</option>
+                                @foreach ($producto->variantes as $variante)
+                                @if ($variante->existencias > 0)
+                                <option value="{{ $variante->id }}" data-precio="{{ $variante->precio_venta - ($variante->precio_venta * ($variante->descuento / 100)) }}">{{ $variante->talla }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                            <input type="submit" class="btn btn-comprador w-50" id="cartBtn" disabled value="Añadir">
+                        </form>
+                    @endif
                 </div>
             </main>
         </div>

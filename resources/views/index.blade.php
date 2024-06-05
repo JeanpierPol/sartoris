@@ -26,7 +26,9 @@
     
                         </div>
                 </a>
+                @if (!Auth::guard('vendedor')->check())
                 <div class="card-footer mt-auto">
+               
                     <div class="d-flex justify-content-between mb-2">
                     <form class="d-flex w-100" action="{{ route('cart-add', $producto->id) }}" method="POST">
                         @csrf
@@ -40,8 +42,9 @@
                         </select>
                         <input type="submit" class="btn btn-comprador w-50 cartBtn" disabled value="Añadir">
                     </form>
-                    </div>
+                    </div>       
                 </div>
+                @endif
             </div>
         </div>
         @endforeach

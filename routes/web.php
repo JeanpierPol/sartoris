@@ -24,6 +24,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/producto-vendedor/{id}', 'indexController@searchVendedor')->name('vendedor-productos');
 
     Route::view('/rol', 'rol')->name('rol')->middleware(['guest:comprador', 'guest:vendedor']);
+    Route::view('politica_privacidad', 'politica_privacidad')->name('politica');
 
     Route::middleware(['auth:comprador', 'revalidate'])->group(function () {
         Route::post('paypal/paymet', 'PayPalController@payment')->name('paypal');

@@ -51,6 +51,7 @@ class PayPalController extends Controller
         $paypalToken = $provider->getAccessToken();
         $order = $provider->capturePaymentOrder($request->token);
 
+        //si el pago es correcto lo envia a la ruta vendedor donde se guardara todo en la base de datos
         if (isset($order['status']) && $order['status']=== 'COMPLETED') {
             return redirect()->route('transaccion_succes');
         }else{

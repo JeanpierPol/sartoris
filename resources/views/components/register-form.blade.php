@@ -75,7 +75,7 @@
                             <div class="form-check d-flex justify-content-start mb-4 pb-3">
                                 <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" required />
                                 <label class="form-check-label" for="form2Example3">
-                                    <span> Acepto los <a href="#!" class=""><u>terminos y condiciones</u></a> de la pagina web</span>
+                                    <span> Acepto los <a href="{{ route('politica') }}" class=""><u>terminos y condiciones</u></a> de la pagina web</span>
                             </div>
 
                             <div class="d-grid">

@@ -7,7 +7,7 @@
 <div class="content-wrapper mt-4">
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4">
-            <span class="text-muted fw-light">Lista de transacciones </span>
+            <span class="text-muted fw-light">Lista de ventas </span>
         </h4>
         <div class="card">
             <div class="card-header">
