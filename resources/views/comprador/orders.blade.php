@@ -13,7 +13,6 @@
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-9">Column</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +51,8 @@
                                 <td>
                                     {{$transaccion->subtotal}}
                                 </td>
-                                <td>{{$transaccion->fecha}}</td>
+                                <td>{{date('d-m-Y',strtotime($transaccion->fecha))}}</td>
+                                
                                 <td><a href="{{route('vendedor-productos', $transaccion->producto->vendedor->id)}}"> {{$transaccion->producto->vendedor->nickname}}</a></td>
 
                             </tr>

@@ -53,7 +53,7 @@
                                 <td>
                                     {{$transaccion->subtotal}}
                                 </td>
-                                <td>{{$transaccion->fecha}}</td>
+                                <td>{{date('d-m-Y',strtotime($transaccion->fecha))}}</td>
                             </tr>
                             @endforeach
                         </tbody>

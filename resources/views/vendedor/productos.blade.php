@@ -14,7 +14,6 @@
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-10 col-sm-9">Column</div>
                             <div class="col-lg-2 col-sm-3"><a type="button" class="btn btn-vendedor fw-bold" href="{{route('vendedor.producto.add-producto')}}">Agregar producto</a></div>
                         </div>
                     </div>
