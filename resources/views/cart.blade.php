@@ -45,7 +45,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="ms-3">
-                                                    <h5><a class="nav-link mb-1" href="{{route('producto', $producto['id_producto'])}}">{{$producto['nombre']}}</a></h5>
+                                                    <h5><a class="nav-link mb-1" href="{{route('producto', $producto['id_producto'])}}">  {{ strlen($producto['nombre']) > 10 ? substr($producto['nombre'], 0, 10) . '...' : $producto['nombre'] }}</a></h5>
 
                                                     @if ($producto['descuento'] > 0)
                                                     <p class="small mb-0 text-danger">{{$producto['descuento']}}% <span class="small text-danger"><s>{{$producto['precio_venta']}}</s>€</span> </p>
