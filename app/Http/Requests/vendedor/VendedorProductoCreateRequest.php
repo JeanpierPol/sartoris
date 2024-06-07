@@ -35,9 +35,9 @@ class VendedorProductoCreateRequest extends FormRequest
             'talla' => 'required|array',
             'talla.*' => 'required|string|in:S,M,L',
             'precio_venta' => 'required|array',
-            'precio_venta.*' => 'required|numeric|gt:0',
+            'precio_venta.*' => 'required|numeric|min:0',
             'descuento' => 'required|array',
-            'descuento.*' => 'required|numeric|gt:0',
+            'descuento.*' => 'required|numeric|min:0',
             'existencias' => 'required|array',
             'existencias.*' => 'required|integer|min:0',
         ];
